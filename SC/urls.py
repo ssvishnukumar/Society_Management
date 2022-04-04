@@ -15,9 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login_registration/', include('django.contrib.auth.urls')), # for login_registration authentication # first django checks this path and then come to the custom urls that we have created
-    path('login_registration/', include('login_registration.urls')), # for login_registration authentication
+    path('registration_page/', include('django.contrib.auth.urls')), # for registration_page authentication # first django checks this path and then come to the custom urls that we have created
+    path('registration_page/', include('registration_page.urls')), # for registration_page authentication
 ]
