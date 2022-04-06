@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<br>
+<h1>LOGIN</h1>
+<br>
+<!--POST and GET in django-->
+
+<!--POST-->
+<!--Django's home form is returned using the POST method, -->
+<!--in which the browser bundles up the form data, encodes it for transmission, -->
+<!--sends it to the server, and then receives back its response. -->
+
+<!--GET , by contrast, bundles the submitted data into a string, and uses this to compose a URL.-->
+<div class="form-group">
+<form method="POST">
+    {% csrf_token %}
+    <!-- {{ form.as_p }}  -----This is the inbuilt forms in django-- -->
+    <!-- below is the bootstrap for the forms. -->
+    <div class="mb-3">
+        <label class="form-label">Username</label>
+        <input type="text" class="form-control" name="username">
+      </div>
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" name="username">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-control" name="password">
+      </div>
+<br>
+    <button class="btn btn-primary">Login</button>
+</form>
+</div>
+{% endblock %}
