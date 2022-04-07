@@ -1,8 +1,6 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate # with the help of this we can authenticate the users and then we can allow them to proceed further.
-from user_login.forms import RegistrationForm
-
-from django.contrib.auth import login
+from django.contrib.auth import login, logout, authenticate # with the help of this we can authenticate the users and then we can allow them to proceed further.
+from user_login.forms import RegistrationForm, LoginForm
 from django.urls import reverse_lazy  # for redirecting back
 
 
@@ -19,13 +17,15 @@ def registration_view(request):
             # here, after authenticating the user and creating the user object ...now we have the user object...
             # now we can call the login
             login(request, account)
-            return redirect('dashboard')
+            return redirect('dashboard') # here it will redirect to the dashboard name in urls...if its there ....else it will show error ...
+
         # if the form is not valid,
         else:
-            context['registration_form'] = form
+            context['registration_form'] = form # here the registration form is the name that we have created for the context.
     # here if the request isnot the POST request, then its the GET request...
     # that means that they are visiting the registration_view for the first time...
-    else: # GET request
+    else: # GET request ................
+        # this means, they still not attempted to click register
         form = RegistrationForm()
         context['registration_form'] = form
     return render(request, 'register.html', context)
@@ -34,8 +34,33 @@ def registration_view(request):
 
 
 
+def logout_view(request):
+    logout(request)
+    return redirect('dashboard')
 
 
+def login_view(request):
+    context = {}
+    user = request.user
+
+    if user.is_authenticated:  # if the user is authenticated we are redirecting ..
+        return redirect('dashboard')
+    if request.POST:
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            email = request.POST['email']
+            password = request.POST['password']
+            user = authenticate(email=email, password=password)
+            if user:
+                # here wer are allowing the user to login.
+                login(request,user)
+                return redirect('dashboard')
+
+    else:
+        # here the user is still not attempted to login. (i.e) GET
+        form = LoginForm()
+    context['login_form'] = form
+    return render(request, 'login.html', context)
 
 
 

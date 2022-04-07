@@ -1,5 +1,7 @@
+from enum import unique
+
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, User, PermissionsMixin
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 
 
 class MyAccountManager(BaseUserManager): # This function is created after the Account class is created.
@@ -39,12 +41,19 @@ class MyAccountManager(BaseUserManager): # This function is created after the Ac
 class Account(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(verbose_name='email', max_length=50, unique=True)
     username = models.CharField(max_length=200, unique=True)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField( max_length=100)
+    # middle_name = models.CharField(max_length=100, null=False, default='Kumar')
+    # mobile_no = models.IntegerField(default=0)
+    # tower_no=models.IntegerField(default=0)
+    # flat_no = models.IntegerField(default=0)
     date_joined = models.DateTimeField(verbose_name='date_joined', auto_now_add=True)
     last_login = models.DateTimeField(verbose_name='last_login',auto_now=True)
     is_admin = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
+
 
 
     USERNAME_FIELD = 'email' # here username field is a keyword. So don't get confused.
