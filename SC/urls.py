@@ -16,7 +16,9 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
+# from django.contrib import auth
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # path('reset/', include('django.contrib.auth.urls')),
     path('user_login/', include('user_login.urls')), # for user_login authentication
 ]

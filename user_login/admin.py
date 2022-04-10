@@ -1,5 +1,5 @@
 from django.contrib import admin
-from user_login.models import Account
+from user_login.models import Account, UserOTP
 from django.contrib.auth.admin import UserAdmin
 
 # admin.site.register(Account)

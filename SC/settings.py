@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+from django.conf.global_settings import EMAIL_USE_SSL
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -120,7 +122,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
+USE_L10N = True # I added this for asia/kolkata
+
+
+
 
 USE_I18N = True
 
@@ -147,8 +153,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS= True
 EMAIL_PORT =587
 EMAIL_HOST_USER = 'starzcodetest1@gmail.com'
-EMAIL_HOST_PASSWORD = 'vishnukumar'
-
+EMAIL_HOST_PASSWORD = 'ovbjinneabfxhkob'
 
 AUTH_USER_MODEL = 'user_login.Account' # here user_login is appname and Account is model.
 # it overrides the default behavior of the builtin user object.

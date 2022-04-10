@@ -2,6 +2,7 @@ from enum import unique
 
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.utils import timezone
 
 
 class MyAccountManager(BaseUserManager): # This function is created after the Account class is created.
@@ -53,6 +54,9 @@ class Account(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
+    is_verified = models.BooleanField(default= False)
+    # otp = models.CharField(max_length=6, null=True, blank=True)
+
 
 
 
@@ -71,36 +75,9 @@ class Account(AbstractBaseUser, PermissionsMixin):
         return True
 
 
+class UserOTP(models.Model):
+    user=models.ForeignKey(Account, on_delete=models.CASCADE)
+    time_st=models.DateTimeField(auto_now=True)
+    otp=models.SmallIntegerField()
 
-# from django.db import models
-# from django.contrib.auth.models import User
-# from django.urls import reverse
-#
-# class OTP(models.Model):
-#     email = models.EmailField(max_length=100, null=False)
-#     otp = models.CharField(max_length= 4)
-#     is_verified = models.BooleanField(default=False) # it will be changed to True after verification.
-#
-#     def __str__(self):
-#         return self.otp
-#
-# # class Profile(models.Model):
-# #     email = models.EmailField(max_length=50, null=False)
-# #     username = models.CharField(max_length=200, null=False)
-# #     flat_no = models.IntegerField( null=False)
-# #     mobile_no = models.IntegerField(null=False)
-# #     tower_no =models.IntegerField(null=False)
-# #     password1 = models.CharField( max_length=50,null=False)
-# #     password2 = models.CharField(max_length=50,null=False)
-# #
-# #     def __str__(self):
-# #         return self.email
-#
-#
-#     # class Meta:
-#     #     ordering = ['-created_on']
-#     #
-#     # def get_absolute_url(self):
-#     #     return reverse('blog:home') # we have to mention the app name also because we have mentioned that in the url page.
-#
-#
+
