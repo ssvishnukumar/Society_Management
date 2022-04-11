@@ -7,7 +7,7 @@
 {% endblock %}
 {% block content %}
 
-<form action='{% url "user_login:login" %}' method="POST">
+<form action='{% url "user_login:otp" %}' method="POST">
      {% csrf_token %}
     <div class="container mt-5">
    <div class="mb-3 col-sm-4">

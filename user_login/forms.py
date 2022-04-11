@@ -8,7 +8,7 @@ class RegistrationForm(UserCreationForm):
     email= forms.EmailField(max_length=50, help_text='Enter a valid EMAIL of yours!')
     mobile_no = forms.IntegerField(max_value=10000000000, )
     flat_no = forms.IntegerField(max_value=10000, )
-    tower_no = forms.IntegerField(max_value=10000, )
+    tower_no = forms.IntegerField(max_value=10000,)
 
     #https://www.youtube.com/watch?v=oZUb372g6Do&list=PLgCYzUzKIBE_dil025VAJnDjNZHHHR9mW&index=14&ab_channel=CodingWithMitch
     # watch at 2.10 min to know more about class Meta
@@ -21,7 +21,7 @@ class RegistrationForm(UserCreationForm):
 
 
 class LoginForm(forms.ModelForm):
-    password = forms.CharField(label='password', widget=forms.PasswordInput) # PasswordInput hides the the password input
+    password = forms.CharField(label='password', widget=forms.PasswordInput)  # PasswordInput hides the the password input
 
     class Meta:
         model = Account

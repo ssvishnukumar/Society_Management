@@ -1,7 +1,7 @@
 from enum import unique
 
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin, AbstractUser
 from django.utils import timezone
 
 
@@ -16,7 +16,7 @@ class MyAccountManager(BaseUserManager): # This function is created after the Ac
         user = self.model(
             email=self.normalize_email(email), # normalize makes the capital letters small
             # normalize_email is available in BaseUserManager class .
-            username=  username,
+            username =  username,
         )
         user.set_password(password)
         user.save(using=self._db)
@@ -39,7 +39,7 @@ class MyAccountManager(BaseUserManager): # This function is created after the Ac
 
 
 
-class Account(AbstractBaseUser, PermissionsMixin):
+class Account(AbstractUser, PermissionsMixin):
     email = models.EmailField(verbose_name='email', max_length=50, unique=True)
     username = models.CharField(max_length=200, unique=True)
     first_name = models.CharField(max_length=100)
@@ -69,15 +69,18 @@ class Account(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.username + ' | ' + self.email
+
     def has_perm(self, perm, obj=None):
         return self.is_admin
+
     def has_module_perm(self, app_label):
         return True
 
 
-class UserOTP(models.Model):
-    user=models.ForeignKey(Account, on_delete=models.CASCADE)
-    time_st=models.DateTimeField(auto_now=True)
-    otp=models.SmallIntegerField()
-
+#
+# class UserOTP(models.Model):
+#     user=models.ForeignKey(Account, on_delete=models.CASCADE)
+#     time_st=models.DateTimeField(auto_now=True)
+#     otp=models.SmallIntegerField()
+#
 
