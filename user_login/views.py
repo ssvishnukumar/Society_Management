@@ -64,7 +64,7 @@ def registration_view(request):
 
             send_mail(
                   "OTP for Registration.",
-                   mess,
+                    mess,
                    settings.EMAIL_HOST_USER,
                    [user.email],
                    fail_silently= False
