@@ -3,7 +3,7 @@ from . import views
 from django.contrib.auth import views as auth_views
 
 from .views import (
-    logout_view, login_view, registration_view, dashboard_view, otp_view
+    logout_view, login_view, registration_view, dashboard_view, otp_view, add_news, add_complaint
 )
 
 
@@ -32,5 +32,9 @@ urlpatterns = [
     path("password_reset/", auth_views.PasswordResetView.as_view(), name= 'password_reset'),
     path("reset/done/", auth_views.PasswordResetCompleteView.as_view(template_name='registration/password_reset_complete.html'), name="password_reset_complete"),
 
+
+    path('add-news/', add_news, name='add_news'),
+    path('add-complaint/', add_complaint, name='add_complaint'),
+    
     ]
 

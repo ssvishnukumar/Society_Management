@@ -3,10 +3,19 @@
 {% extends 'base.html' %}
 {% block title %}Register{% endblock %}
 {% block content %}
+{% block css %}
 <br>
-<div class="shadow-lg p-4 mb-auto bg-body rounded">
-<br>
-<h1>REGISTER</h1>
+<center>
+    <div class="shadow-lg p-4 mb-auto bg-body rounded" 
+            style='
+                width: 600px;  
+                margin-top: 20px;
+                bottom:20px;
+                height:auto;
+                border-radius:50%;
+                '><br>
+                
+<h1 style="font-weight:bold;">REGISTER</h1>
 <br>
 <!--POST and GET in django-->
 
@@ -16,19 +25,16 @@
 <!--sends it to the server, and then receives back its response. -->
 
 <!--GET , by contrast, bundles the submitted data into a string, and uses this to compose a URL.-->
-<div class="form-group">
+<div class="form-group" >
 <form method="POST"> <!-- here we are specifying the method for the button we used below.-->
    {% csrf_token %} <!-- # its an encryption token.-->
-            <div class="mt-3 container mt-4">
+
 
     {% for field in registration_form %}
+        <p><div class="mb-3">
+            <small>{{field.label_tag}}</small><br>
+            {{field}}<br>
 
-        <p>
-                  <div class="mb-3">
-
-            {{field.label_tag}}<br>
-            {{field}}
-            <br>
 <!--            {% if field.help_text %}-->
 <!--            <small style="color: grey;">{{field.help_text}}</small>-->
 <!--            {% endif %}-->
@@ -43,4 +49,50 @@
     </div>
 </form>
 </div>
+</center>
 {% endblock %}
+{% endblock %}
+
+
+{% comment %} 
+<div class="mt-3 container mt-4">
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" name="email" placeholder="Enter Your Email." required id="id_email">
+      </div>
+          <div class="mb-3">
+            <label class="form-label">User Name</label>
+            <input type="text" class="form-control" name="username" placeholder="Enter Username.">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">First Name</label>
+            <input type="text" class="form-control" name="first_name" placeholder="Enter First Name.">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Last Name</label>
+            <input type="text" class="form-control" name="last_name" placeholder="Enter Last Name.">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Mobile Number</label>
+            <input type="number" class="form-control" name="mobile_no" placeholder="Enter Mobile Number.">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Tower Number</label>
+            <input type="number" class="form-control" name="tower_no" placeholder="Enter Tower Number.">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Flat Number</label>
+            <input type="number" class="form-control" name="flat_no" placeholder="Enter Flat Number.">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input type="password" class="form-control" name="password1" placeholder="Create your password">
+            <div id="passwordHelpBlock" class="form-text" >
+                <small>Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.</small>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Password Confirmation</label>
+              <input type="password" class="form-control" name="password2" placeholder="Enter your password again.">
+            </div> {% endcomment %}

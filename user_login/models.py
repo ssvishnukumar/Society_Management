@@ -2,6 +2,7 @@ from enum import unique
 
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin, AbstractUser
+from django.urls import reverse
 from django.utils import timezone
 
 
@@ -26,7 +27,7 @@ class MyAccountManager(BaseUserManager): # This function is created after the Ac
         user = self.create_user(
             email=self.normalize_email(email), # normalize makes the capital letters small
             # normalize_email is available in BaseUserManager class .
-            username=  username,
+            username=username,
             password=password,
         )
         user.is_admin =True
@@ -77,10 +78,24 @@ class Account(AbstractUser, PermissionsMixin):
         return True
 
 
-#
-# class UserOTP(models.Model):
-#     user=models.ForeignKey(Account, on_delete=models.CASCADE)
-#     time_st=models.DateTimeField(auto_now=True)
-#     otp=models.SmallIntegerField()
-#
+STATUS = (
+    (0,"Draft"),
+    (1,"Publish")
+)
+class Post(models.Model):
+    title = models.CharField(max_length=200, unique=True)
+    slug = models.SlugField(max_length=200, unique=True)
+    author = models.ForeignKey(Account, on_delete= models.CASCADE,related_name='blog_posts')
+    updated_on = models.DateTimeField(auto_now= True)
+    content = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    status = models.IntegerField(choices=STATUS, default=1)    
+    
+    class Meta:
+        ordering = ['-created_on']
+        
+    def __str__(self):
+        return self.title
 
+    def get_absolute_url(self):
+        return reverse('user_login:dashboard')

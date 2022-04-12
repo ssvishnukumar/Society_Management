@@ -1,11 +1,18 @@
-
 {% extends 'base.html' %}
-{% block title %}Register{% endblock %}
+{% block title %}Login{% endblock %}
 {% block content %}
+{% block css %}
+<center>
 <br>
-<div class="shadow-lg p-4 mb-auto bg-body rounded">
+<div class="shadow-lg p-4 mb-auto bg-body rounded" 
+            style='
+                width: 600px;  
+                margin-top:50px; 
+                height:530px;
+                border-radius:50%;
+                '>
 <br>
-<h1>SIGN IN</h1>
+<h1 style="font-weight:bold;">SIGN IN</h1>
 <br>
 <!--POST and GET in django-->
 
@@ -15,37 +22,56 @@
 <!--sends it to the server, and then receives back its response. -->
 
 <!--GET , by contrast, bundles the submitted data into a string, and uses this to compose a URL.-->
+
 <div class="form-group">
 <form method="POST"> <!-- here we are specifying the method for the button we used below.-->
+
    {% csrf_token %} <!-- # its an encryption token.-->
+
             <div class="mt-3 container mt-4">
-    {% for field in login_form %}
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" name="email" required id ='id_email' placeholder="Enter your registered email">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label" >Password</label>
+                    <input type="password" class="form-control" name="password" required id ='id_password' placeholder="Enter your password">
+                  </div>
+                  {% if form.non_field_errors %}
+    <ul class='form-errors'>
+        {% for error in form.non_field_errors %}
+            <li>{{ error }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+    {% comment %} {% for field in login_form %}
         <p>
                 <div class="mb-3">
             {{field.label_tag}}<br>
             {{field}}
             <br>
+            
             {% if field.help_text %}
-            <small style="color: grey;">{{field.help_text}}</small>
+            <p style="color: grey;">{{field.help_text}}</p>
             {% endif %}
             </div>
             </p>
-        {% endfor %}
+        {% endfor %} {% endcomment %}
 
 <!--            if we do a POST request it checks if the form is valid if the form is not valid and it will still add the form to the context-->
 <!--            In that point if the form is invalid its going to have errors...so we are looping through the errors and display the errors -->
-<!--       {% for field in login_form %}-->
-<!--        {% for error in field.errors %}-->
-<!--        <p style="color: red;">{{error}}</p>-->
-<!--        {% endfor %}-->
-<!--        {% endfor %}-->
+            {% comment %} {% for field in login_form %}
+            {% for error in field.errors %}
+            <p style="color: red;">{{error}}</p>
+            {% endfor %}
+            {% endfor %} {% endcomment %}
 
 <!--                if they not entered anything correctly then it will show red error-->
-        {% if login_form.non_field_errors %}
-            <div style="color: red;">
+        {% comment %} {% if login_form.non_field_errors %}
+            <small style="color: red;">
                 <p>{{login_form.non_field_errors}}</p>
-            </div>
-        {% endif %}
+            </small>
+        {% endif %} {% endcomment %}
 
     <button class="btn btn-primary">SignIn</button>
     <br>
@@ -54,6 +80,8 @@
     </div>
 </form>
 </div>
+</center>
+{% endblock %}
 {% endblock %}
 
 

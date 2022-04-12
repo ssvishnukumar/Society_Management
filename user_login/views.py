@@ -1,10 +1,10 @@
 # from account.models import User
 import pdb
-
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate, get_user_model  # with the help of this we can authenticate the users and then we can allow them to proceed further.
 from django.db import IntegrityError
 
-from user_login.forms import RegistrationForm, LoginForm
+from user_login.forms import RegistrationForm, LoginForm, AddNews, AddComplaint
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from .forms import RegistrationForm
@@ -15,6 +15,35 @@ from django.conf import settings
 from .models import Account
 # Account = get_user_model()
 
+@login_required(login_url='/user_login/login/')
+def add_news(request): 
+    form= AddNews()
+    if request.method=='POST':
+        form= AddNews(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('/user_login/dashboard/')
+    context={
+        'form':form,
+    }
+    return render(request,'post/add_news.html/',context)
+    # render responds by HTTP response of context. Here (i.e) forms
+    
+@login_required(login_url='/user_login/login/')
+def add_complaint(request): 
+    form= AddComplaint()
+    if request.method=='POST':
+        form= AddComplaint(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('/user_login/dashboard/')
+    context={
+        'form':form,
+    }
+    return render(request,'post/add_complaint.html',context)
+    # render responds by HTTP response of context. Here (i.e) forms
+    
+    
 def registration_view(request):
     context = {}
     form = RegistrationForm(request.POST)

@@ -1,8 +1,8 @@
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
-from user_login.models import Account
+from user_login.models import Account, Post
 from django.contrib.auth import authenticate
-
+from django.db import models
 class RegistrationForm(UserCreationForm):
     email= forms.EmailField(max_length=50, help_text='Enter a valid EMAIL of yours!')
     mobile_no = forms.IntegerField(max_value=10000000000, )
@@ -36,7 +36,32 @@ class LoginForm(forms.ModelForm):
                 raise forms.ValidationError("Invalid Data")
 
 
-    
+class AddNews(forms.ModelForm):
+
+    class Meta:
+        model = Post
+        fields = ('title','slug','content','author','status',)
+        widgets = {
+            'title': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Title of the News'}),
+            'slug': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Copy the title with no space and a hyphen in between (slug)'}),
+            'author': forms.TextInput(attrs={'class':'form-control', 'value':'', 'type':'hidden',  'id':'id_num', }), # here after , we have to create a small javascript code in add_blog.html ... # here, 'id':'id_num' is created to make the reference to the java script code.
+            'content': forms.Textarea(attrs={'class':'form-control', 'placeholder':'''Write The Content Here.'''}),
+            'status': forms.Select(attrs={'class':'form-control'}),
+        }
+        
+        
+class AddComplaint(forms.ModelForm):
+
+    class Meta:
+        model = Post
+        fields = ('title','slug','content','author','status',)
+        widgets = {
+            'title': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Title of the Complaint'}),
+            'slug': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Copy the title with no space and a hyphen in between (slug)'}),
+            'author': forms.TextInput(attrs={'class':'form-control', 'value':'', 'type':'hidden',  'id':'id_num', }), # here after , we have to create a small javascript code in add_blog.html ... # here, 'id':'id_num' is created to make the reference to the java script code.
+            'content': forms.Textarea(attrs={'class':'form-control', 'placeholder':'''Write Your Complaint Here.'''}),
+            'status': forms.Select(attrs={'class':'form-control'}),
+        }
 
 
 
