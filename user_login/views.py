@@ -19,7 +19,7 @@ def registration_view(request):
     context = {}
     form = RegistrationForm(request.POST)
     context['registration_form'] = form
-    print(request.method == "POST")
+    # print(request.method == "POST")
     try:
         if request.method == "POST":
             # email = request.POST['email']
@@ -42,6 +42,9 @@ def registration_view(request):
                 form = RegistrationForm(request.POST)
                 context['registration_form'] = form
                 return render(request, 'register.html',context)
+            # if Account.objects.filter(email=email).first():
+            #     messages.success(request, 'Email is taken')
+            #     return redirect('/user_login/register/')
                 # messages.error(request, 'password does not match')
                 # return redirect('user_login:register')
 
@@ -53,6 +56,7 @@ def registration_view(request):
             user.mobile_no = mobile_no
 
             user.save()
+            
             # print(user)
             user_otp= random.randint(1000,9999)
 
@@ -89,6 +93,7 @@ def login_view(request):
         if form.is_valid():
             email = request.POST['email']
             password = request.POST['password']
+            
             user = authenticate(email=email, password=password)
             if user:
                 # here wer are allowing the user to login.
@@ -130,7 +135,7 @@ def otp_view(request):
             return redirect('user_login:login')
         else:
             messages.error(request, "OTP does not match. recheck or click to resend otp")
-        return render(request, 'otp.html', {'error':{"Password doesn't match"}})
+            return render(request, 'otp.html', {'error':{"Password doesn't match"}})
     return render(request, 'otp.html')
 
 

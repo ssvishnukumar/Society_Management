@@ -3,7 +3,6 @@ from django import forms
 from user_login.models import Account
 from django.contrib.auth import authenticate
 
-
 class RegistrationForm(UserCreationForm):
     email= forms.EmailField(max_length=50, help_text='Enter a valid EMAIL of yours!')
     mobile_no = forms.IntegerField(max_value=10000000000, )
@@ -37,7 +36,7 @@ class LoginForm(forms.ModelForm):
                 raise forms.ValidationError("Invalid Data")
 
 
-
+    
 
 
 
