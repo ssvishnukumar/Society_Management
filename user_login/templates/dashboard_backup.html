@@ -18,148 +18,64 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     {% block css %}
-
     body {
     color: white;
-    background: #ffc35a;
-    
+    background: #7ea5b4;
     {% comment %} font-family: 'Roboto', sans-serif; {% endcomment %}
-    font-family: 'Poppins'; font-size: 20px;
-    overflow: auto;
+    font-family: 'Poppins'; font-size: 22px;
+    overflow: scroll;
     }
-
     h4,h1{
     color: black;
     }
-
     li {
     color: black;
-    } 
-
+    }
     .footer {
     position: relative;
     left: 0;
     bottom: 0;
     width: 100%;
-    padding: 2rem;
-    background-color: #212529;
+    background-color: #404040;
     color: white;
     text-align: center;
     }
-
     .grid-container {
     display: grid;
     grid-template-columns: auto auto auto auto;
-    background-color: #212529;
+    background-color: #a3a9ad;
     padding: 5px;
     }
-
     .grid-container2 {
     display: grid;
     grid-template-columns: auto auto auto auto auto;
-    background-color: #212529;
+    background-color: #a3a9ad;
     padding: 5px;
     }
-
     .grid-item {
     background-color: white;
     border: 1px solid rgba(0, 0, 0, 0.8);
     padding: 10px;
     font-size: 20px;
     text-align: center;
-    
     }
     .card-block {
     min-height: 220px;
-    
 }
-
-    .main-container {
-      overflow: scroll;
-      margin-left: -100px;
-      {% comment %} position: relative; {% endcomment %}
-      {% comment %} height: 2000px; {% endcomment %}
-      {% comment %} margin-right: {% endcomment %}
-    }
-    {% comment %} .container{
-      width: 100%;
-    } {% endcomment %}
-    .main-container::-webkit-scrollbar{
-      display: none;
+    .main-container{
+    overflow:scroll;
+    overflow-y:auto;
     }
 
-    .home_services{
-      float: left;
-
-    }
-    .other_services{
-      float: right;
-    }
-
-#sidebar {
-  padding: 2.5em 2.5em 0.5em 2.5em;
-  background: rgba(0,0,0,0.5);
-
-  backdrop-filter: saturate(100%) blur(10px);
-
-  cursor: default;
-  height: 77.1rem;
-  right: 0;
-
-  overflow-x: hidden;
-  overflow-y: hidden;
-  position: absolute;
-  text-align: center;
-  {% comment %} top: 0; {% endcomment %}
-  {% comment %} margin-top:60px; {% endcomment %}
-  width: 20%;
-  z-index: 1;
-  {% comment %} bottom:0; {% endcomment %}
-}
-
-@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
-  .sidebar {
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-  }
-}
-
-.features {
-  display: -moz-flex;
-  display: -webkit-flex;
-  display: -ms-flex;
-  display: flex;
-  -moz-flex-wrap: wrap;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  border-radius: 8.25em;
-  width: 80%;
-  border: solid 1px rgba(255, 255, 255, 0.15);
-  background: rgba(255, 255, 255, 0.15);
-  {% comment %} margin: 0 0 2em 0; {% endcomment %}
-}
-{% comment %} .features section:nth-child(-n + 2) {
-  border-top-width: 0;
-} {% endcomment %}
-.features section {
-  padding: 3.5em 3em 1em 1em;
-  width: 50%;
-  {% comment %} border-top: solid 5px rgba(255, 255, 255, 0.15); {% endcomment %}
-  {% comment %} border-bottom: solid 5px rgba(255, 255, 255, 0.15); {% endcomment %}
-  position: relative;
-
-}
+<!--    .main-container::-webkit-scrollbar {-->
+<!--  display: none;-->
+<!--}-->
     {% endblock %}
 </head>
 {% block content %}
-<section id='sidebar'>
-  jsdhsjhd
-  </section>
+
 {% if Account.is_authenticated %}
---------------------Authenticated
-{% comment %} 
-<div class="container" >
+<div class="container">
     <!--    {%for c in complaints %}-->
     <br>
     <div class="row">
@@ -219,69 +135,72 @@
     </div>
     <br>
     {% endfor %}
-</div> {% endcomment %}
-
+</div>
 {% else %}
+<h1><strong>
+    <center> Recent News</center>
+</strong></h1>
+<!--<div class="container">-->
+<!--        <div class="row">-->
+<!--            <div class="col-md-3">-->
+<!--                    <div class="card" style="width: 70rem; height: 20rem;">-->
+<!--                        <div class="card-body">-->
+<!--                            <div class="row">-->
+<!--                                <ul>-->
+<!--                                    <li> Elon Musk reacts with an emoji after Twitter CEO confirms he won’t join board. Musk will not be joining the board of directors of Twitter, the social media company's CEO announced late Sunday, less than a week after announcing Musk's appointment. Musk was named to the Twitter board of directors after purchasing a significant investment in the company and becoming its largest stakeholder.</li>-->
+<!--                                    <li> Uber India announces hike in cab prices due to rising fuel cost. Uber rides are set to be more expensive now. The cab services company is set to increase the fares by 12 per cent. As per the recent announcement the step has been taken in the light of increasing fuel prices. Earlier, the company had also announced a fare hike specifically for Mumbai owing to the same reason. The increased fares are supposed to cushion cab drivers from the impact of fuel price hikes.</li>-->
+<!--                                    <li> KGF 2: Yash fans create HUGE mosaic poster for actor with books! The size of the portrait is 130× 190 ft and is spread over 25650 sqft with books situated at the White Garden Grounds of Malur. This is being done by the Yash Fans Association of Mallur.</li>-->
+<!--                                    <li> Congress' Navjot Singh Sidhu makes political resurgence attempts in Punjab after poll debacle. Sidhu is still trying to hold the reins of the party even as he was asked by Congress president Sonia Gandhi to put down his papers following the embarrassing performance of the party. </li>-->
+<!--                                </ul>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--        </div>-->
+<!--</div><br>-->
+<center>
+    <div class="main-container" style=" width: 80rem; height: 15rem;">
+<div class="container-fluid">
 
-<h1>
-  <br>
-  <medium>
-    <p style="margin-left:-70px;">Recent News:</p>
-</medium>
-</h1>
-
-
-    <div class="main-container" style=" width: 70rem; height: 19rem; padding: 0.5rem; bottom: 0.5rem;">
-<div class="container-fluid" style='color: #000000;'>
-
-    <div class="row flex-row flex-nowrap" >
+    <div class="row flex-row flex-nowrap">
         <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div class="card card-block" style = 'width:300px; height:275px;'>lorenipsum</div>
+            <div class="card card-block">lorenipsum</div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="card card-block">Card</div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="card card-block">Card</div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="card card-block">Card</div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="card card-block">Card</div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="card card-block">Card</div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="card card-block">Card</div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="card card-block">Card</div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="card card-block">Card</div>
         </div>
 
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-          <div class="card card-block" style = 'width:300px; height:275px; margin-left:60px;'>Card1</div>
-      </div>
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="card card-block" style = 'width:300px; height:275px; margin-left:120px;'>Card</div>
+
     </div>
-    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-      <div class="card card-block" style = 'width:300px; height:275px; margin-left:180px;'>Card</div>
-  </div>
-  <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-    <div class="card card-block" style = 'width:300px; height:275px; margin-left:240px;'>Card</div>
 </div>
-<div class="col-12 col-sm-6 col-md-4 col-lg-3">
-  <div class="card card-block" style = 'width:300px; height:275px; margin-left:300px;'>Card</div>
-</div>
-<div class="col-12 col-sm-6 col-md-4 col-lg-3">
-  <div class="card card-block" style = 'width:300px; height:275px; margin-left:360px;'>Card</div>
-</div>
-<div class="col-12 col-sm-6 col-md-4 col-lg-3">
-  <div class="card card-block" style = 'width:300px; height:275px; margin-left:420px;'>Card</div>
-</div>
-<div class="col-12 col-sm-6 col-md-4 col-lg-3">
-  <div class="card card-block" style = 'width:300px; height:275px; margin-left:480px;'>Card</div>
-</div>
-<div class="col-12 col-sm-6 col-md-4 col-lg-3">
-  <div class="card card-block" style = 'width:300px; height:275px; margin-left:540px;'>Card</div>
-</div>
-<div class="col-12 col-sm-6 col-md-4 col-lg-3">
-  <div class="card card-block" style = 'width:300px; height:275px; margin-left:600px;'>Card</div>
-</div>
-<div class="col-12 col-sm-6 col-md-4 col-lg-3">
-  <div class="card card-block" style = 'width:300px; height:275px; margin-left:660px;'>Card</div>
-</div>
-
-</div>
-</div>
-</div>
-
-{% comment %} </center> {% endcomment %}
+    </div>
+</center>>
 </hr>
+    <h1><strong>
 
-
-
+        <center>Society's Flats on Rent or Buy and other Facilities</center>
+    </strong></h1>
 <!--    <div class="container mb-5">-->
 <!--        <div class="row">-->
 
@@ -314,6 +233,7 @@
 <!--                    </div>-->
 <!--                </div>-->
 <!--            </div>-->
+    <div class="container my-4">
 
 
 
@@ -321,46 +241,38 @@
 
 
 <!--Carousel Wrapper-->
-{% comment %} <div id="multi-item-example" class="carousel slide carousel-multi-item"  data-ride="carousel"> {% endcomment %}
+<div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
 
   <!--Controls-->
-  {% comment %} <div class="controls-top" >
+  <div class="controls-top">
     <a class="btn-floating" href="#multi-item-example" data-slide="prev"><i class="fas fa-chevron-left"></i></a>
     <a class="btn-floating" href="#multi-item-example" data-slide="next"><i
         class="fas fa-chevron-right"></i></a>
-  </div> {% endcomment %}
+  </div>
   <!--/.Controls-->
 
   <!--Indicators-->
-  {% comment %} <ol class="carousel-indicators" style='margin-bottom:-1rem;'>
+  <ol class="carousel-indicators">
     <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
     <li data-target="#multi-item-example" data-slide-to="1"></li>
-  </ol> {% endcomment %}
 
-  <h1>
-    <br>
-    <medium>
-      <p style="margin-left:-70px;">Soceity's Flats:</p>
-  </medium>
-  </h1>
-
-  
-<div class="container my-8"style='margin-left:-100px; width:70rem; height: 19rem; padding: 0.5rem; bottom: 0.5rem;'>
+  </ol>
+  <!--/.Indicators-->
 
   <!--Slides-->
-  <div class="carousel-inner"  role="listbox">
+  <div class="carousel-inner" role="listbox">
 
     <!--First slide-->
     <div class="carousel-item active">
 
-      <div class="col-md-3" style="float:left; " >
-       <div class="card mb-2" >
+      <div class="col-md-3" style="float:left">
+       <div class="card mb-2">
           <img class="card-img-top"
-            src="https://freedesignfile.com/upload/2019/08/3D-building-vector.jpg" alt="Card image cap">
+            src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg" alt="Card image cap">
           <div class="card-body">
             <h4 class="card-title">1 BHK</h4>
             <p class="card-text"></p>
-            <a class="btn btn-warning" style='color:#000000;'>Buy</a>
+            <a class="btn btn-primary">Buy</a>
           </div>
         </div>
       </div>
@@ -368,11 +280,11 @@
       <div class="col-md-3" style="float:left">
         <div class="card mb-2">
           <img class="card-img-top"
-          src="https://freedesignfile.com/upload/2019/08/3D-building-vector.jpg" alt="Card image cap">
+            src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg" alt="Card image cap">
           <div class="card-body">
             <h4 class="card-title">2 BHK</h4>
             <p class="card-text"></p>
-            <a class="btn btn-warning" style='color:#000000;'>Buy</a>
+            <a class="btn btn-primary">Buy</a>
           </div>
         </div>
       </div>
@@ -380,11 +292,11 @@
       <div class="col-md-3" style="float:left">
         <div class="card mb-2">
           <img class="card-img-top"
-          src="https://freedesignfile.com/upload/2019/08/3D-building-vector.jpg" alt="Card image cap">
+            src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg" alt="Card image cap">
           <div class="card-body">
             <h4 class="card-title">3 BHK</h4>
             <p class="card-text"></p>
-            <a class="btn btn-warning" style='color:#000000;'>Buy</a>
+            <a class="btn btn-primary">Buy</a>
           </div>
         </div>
       </div>
@@ -392,22 +304,81 @@
        <div class="col-md-3" style="float:left">
        <div class="card mb-2">
           <img class="card-img-top"
-          src="https://freedesignfile.com/upload/2019/08/3D-building-vector.jpg" alt="Card image cap">
+            src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg" alt="Card image cap">
           <div class="card-body">
             <h4 class="card-title">1, 2 ,3 BHK</h4>
             <p class="card-text"></p>
-            <a class="btn btn-warning" style='color:#000000;'>Buy</a>
+            <a class="btn btn-primary">Rent</a>
           </div>
         </div>
       </div>
 
-  </div>
-</div>
+    </div>
+    <!--/.First slide-->
+
+    <!--Second slide-->
+    <div class="carousel-item">
+
+      <div class="col-md-3" style="float:left">
+        <div class="card mb-2">
+          <img class="card-img-top"
+            src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg" alt="Card image cap">
+          <div class="card-body">
+            <h4 class="card-title">Card title</h4>
+            <p class="card-text"></p>
+            <a class="btn btn-primary">Button</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3" style="float:left">
+        <div class="card mb-2">
+          <img class="card-img-top"
+            src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg" alt="Card image cap">
+          <div class="card-body">
+            <h4 class="card-title">Card title</h4>
+            <p class="card-text"></p>
+            <a class="btn btn-primary">Button</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3" style="float:left">
+        <div class="card mb-2">
+          <img class="card-img-top"
+            src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(48).jpg" alt="Card image cap">
+          <div class="card-body">
+            <h4 class="card-title">Card title</h4>
+            <p class="card-text"></p>
+            <a class="btn btn-primary">Button</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3" style="float:left">
+        <div class="card mb-2">
+          <img class="card-img-top"
+            src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg" alt="Card image cap">
+          <div class="card-body">
+            <h4 class="card-title">Card title</h4>
+            <p class="card-text"></p>
+            <a class="btn btn-primary">Button</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!--/.Second slide-->
+
+
+
   </div>
   <!--/.Slides-->
+
+</div>
 <!--/.Carousel Wrapper-->
 
-            {% comment %} <div class="col-lg-4 my-4 " style="margin-left:25rem">
+            <div class="col-lg-4 my-4 " style="margin-left:25rem">
                 <div class="card shadow" style="width: 20rem; height: 10rem;">
                     <div class="card-body">
                         <h4 class="card-title">
@@ -420,115 +391,45 @@
                         </ul>
                     </div>
                 </div>
-            </div> {% endcomment %}
+            </div>
 
-
-            <br>
-    {% comment %} <h1><medium>
+        </div>
+    </div>
+    <h1><strong>
         <center> Home Services</center>
-    </medium></h1> {% endcomment %}
-{% comment %} 
-    <h1>
-      <br>
-      <medium>
-        <p style="margin-left:-70px;">Home Services:</p>
-    </medium>
-    </h1> {% endcomment %}
-
-        {% comment %} <div style="width: 70rem;"> {% endcomment %}
-            {% comment %} <div class="grid-container " style='margin-left:-80px; '>
-              
+    </strong></h1>
+    <center>
+        <div style="width: 70rem;">
+            <div class="grid-container">
                 <div class="grid-item"><h4><a href="{% url 'user_login:dashboard' %}"> AC Service</a></h4></div>
                 <div class="grid-item"><h4><a href="{% url 'user_login:dashboard' %}">Home Service</a></h4></div>
                 <div class="grid-item"><h4><a href="{% url 'user_login:dashboard'%}">Pest Control</a></h4></div>
                 <div class="grid-item"><h4><a href="{% url 'user_login:dashboard' %}">Groceries</a></h4></div>
-        </div> {% endcomment %}
-{% comment %} 
+            </div>
+        </div>
+    </center>
     <br>
-    <h1>
-      <br>
-      <medium>
-        <p style="margin-left:-70px;">Other Services:</p>
-    </medium>
-    </h1>
-
-            <div class="grid-container2" style='margin-left:-80px;'>
+    <h1><strong>
+        <center> Other Services</center>
+    </strong></h1>
+    <center>
+        <div style="width: 90rem; height: 10rem;">
+            <div class="grid-container2">
                 <div class="grid-item"><h4><a href="{% url 'user_login:dashboard' %}"> Residents List</a></h4></div>
                 <div class="grid-item"><h4><a href="{% url 'user_login:dashboard' %}">Emergency Numbers</a></h4></div>
                 <div class="grid-item"><h4><a href="{% url 'user_login:dashboard' %}">Daily Helps</a></h4></div>
                 <div class="grid-item"><h4><a href="{% url 'user_login:dashboard' %}">Documents</a></h4></div>
                 <div class="grid-item"><h4><a href="{% url 'user_login:dashboard' %}">Communications</a></h4></div>
-            </div> {% endcomment %}
-        {% comment %} </div>   {% endcomment %}
-<br>
+            </div>
+        </div>
+    </center>
 
-</div>
+
     {% endif %}
-
-  
-    
-<div class="features">
-
-      <section>
-    <medium><h1 class="home_services" style='margin-left:180px'>Home Services</h1></medium>
-    <br>
-    <br>
-              {% comment %} <div class="col-lg-3 col-md-6 mb-4"> {% endcomment %}
-                {% comment %} <h5 class="mb-3" style="letter-spacing: 2px; color: #7f4722;">shopping online</h5> {% endcomment %}
-                <ul class="list-unstyled mb-4" style='margin-left:180px'>
-                  <li class="mb-1">
-                    <a href="#!" style="color: #4f4f4f;">AC Service</a>
-                  </li>
-                  <li class="mb-1">
-
-                    <a href="#!" style="color: #4f4f4f;">Pest Control</a>
-                  </li>
-                  <li class="mb-1">
-                    <a href="#!" style="color: #4f4f4f;">Home Service</a>
-                  </li>
-                  <li>
-                    <a href="#!" style="color: #4f4f4f;">Groceries</a>
-                  </li>
-                </ul>
-</section>
-<section>
-{% comment %} <div class="other"> {% endcomment %}
-    <medium><h1 class="other_services" style='margin-right:150px;'>OtherServices</h1></medium>
-    <br>
-    <br>
-              {% comment %} <div class="col-lg-3 col-md-6 mb-4"> {% endcomment %}
-                {% comment %} <h5 class="mb-3" style="letter-spacing: 2px; color: #7f4722;">shopping online</h5> {% endcomment %}
-                <ul class="list-unstyled mb-4" style='margin-left:190px'  >
-                  <li class="mb-1">
-                    <a href="#!" style="color: #4f4f4f;">Resident List</a>
-                  </li>
-                  <li class="mb-1">
-                    <a href="#!" style="color: #4f4f4f;">Emergency Number</a>
-                  </li>
-                  <li class="mb-1">
-                    <a href="#!" style="color: #4f4f4f;">Daily Help</a>
-                  </li>
-                  <li class="mb-1">
-                    <a href="#!" style="color: #4f4f4f;">Documents</a>
-                  </li>
-                  <li>
-                    <a href="#!" style="color: #4f4f4f;">Communication</a>
-                  </li>
-                </ul>
-</section>
-</div>
-            {% comment %} </div> {% endcomment %}
-
-
-    {% comment %} <div style="clear: both"></div> {% endcomment %}
-    
-    <div class="footer" style='width: 100%; float:left;'>
-
-        <h2 style="color:#fbc35a;">SOCIETY MANAGEMENT</h2>
-        <p>Think Future Technologies
-          <br>
-            <strong STYLE='COLOR:#FBC35A;'>Contact :  </strong>1234567890
-          <br> Thank You For Visiting.<span style="color:#fbc35a;">!!!</span></p>
+    <div class="footer">
+        <h2>Kailash Residency</h2>
+        <p>Powder Galli, Goregaon (East) in Jhansi.
+            <strong>Secretary:</strong> A.T. Bhide Mob.no.: 1234567890</p>
     </div>
 </html>
 {% endblock content %}
