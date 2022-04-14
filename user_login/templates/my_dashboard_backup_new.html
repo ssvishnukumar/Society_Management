@@ -1,3 +1,5 @@
+
+
 {% extends 'base.html' %}
 
 {% block title %} Guest Dashboard {% endblock %}
@@ -97,16 +99,16 @@
     }
 
 #sidebar {
-  padding: 1em 2.5em 1em 2.5em;
+  padding: 2.5em 2.5em 0.5em 2.5em;
   background: rgba(255,255,255,0.5);
   border: 4px solid rgba(255,255,255,0.6);
   backdrop-filter: saturate(100%) blur(10px);
 
   cursor: default;
   height: 20rem;
-  right: 650px;
+  right: 100px;
   top: 75%  ;
-  border-radius: 3rem; 
+  border-radius: 50%;
   overflow-x: hidden;
   overflow-y: hidden;
   position: absolute;
@@ -117,36 +119,11 @@
   z-index: 1;
   {% comment %} bottom:0; {% endcomment %}
 }
-#sidebar_help {
-  padding: 1em 2.5em 1em 2.5em;
-  background: rgba(255,255,255,0.5);
-  border: 4px solid rgba(255,255,255,0.6);
-  backdrop-filter: saturate(100%) blur(10px);
 
-  cursor: default;
-  height: 15rem;
-  right: 100px;
-  top: 80%  ;
-  border-radius: 3rem;;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  position: absolute;
-  text-align: center;
-  {% comment %} top: 0; {% endcomment %}
-  {% comment %} margin-top:60px; {% endcomment %}
-  width: 30%;
-  z-index: 1;
-  {% comment %} bottom:0; {% endcomment %}
-}
 @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
   .sidebar {
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
-  }
-  .sidebarr{
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-
   }
 }
 
@@ -160,11 +137,9 @@
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   border-radius: 8.25em;
-  margin: 2rem;
-
-  {% comment %} width: 100%; {% endcomment %}
-  border: solid 1px rgba(255, 255, 255, 0.55);
-  background: rgba(255, 255, 255, 0.25);
+  width: 100%;
+  border: solid 1px rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.15);
   {% comment %} margin: 0 0 2em 0; {% endcomment %}
 }
 {% comment %} .features section:nth-child(-n + 2) {
@@ -173,17 +148,9 @@
 .features section {
   padding: 3.5em 3em 1em 1em;
   width: 50%;
-
   {% comment %} border-top: solid 5px rgba(255, 255, 255, 0.15); {% endcomment %}
   {% comment %} border-bottom: solid 5px rgba(255, 255, 255, 0.15); {% endcomment %}
   position: relative;
-}
-section2 {
-  color: #fff;
-}
-section3 {
-  color: #fff;
-}
 
 }
 section2 {
@@ -192,7 +159,7 @@ section2 {
 
 .card-block{
   width:300px; height:300px; border-radius:1rem; padding: 0.5rem; border-radius:2rem; padding: 2rem;  border: solid 1px rgba(255, 255, 255, 0.15);
-            background: rgba(255, 255, 255, 0.25); border: 1px solid rgba(255, 255, 255, 0.7);  
+            background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.7);  
 }
     {% endblock %}
 </head>
@@ -203,53 +170,31 @@ section2 {
   <section2>
     {% comment %} <div class="other"> {% endcomment %}
       <div style='color:#fff;'>
-        <strong><h2 class="side1" style='color: #000  ; '>Society Facilities</h2></strong>
+        <strong><h1 class="side1" style='color: #000  ; '>FEATURES</h1></strong>
                   {% comment %} <div class="col-lg-3 col-md-6 mb-4"> {% endcomment %}
                     {% comment %} <h5 class="mb-3" style="letter-spacing: 2px; color: #7f4722;">shopping online</h5> {% endcomment %}
                     <ul class="list-unstyled mb-4">
                       <li class="mb-1">
-                        <button href="#!" class="btn btn-warning" style='border: 0px #fff solid; border-radius:1rem; background:#fbc35a; color:#000; margin-bottom:5px; width:150px;'>POOL</button>
+                        <button href="#!" class="btn btn-warning" style='border: 0px #fff solid; border-radius:1rem; background:#fbc35a; color:#000; margin-bottom:5px;'>POOL</button>
                         {% comment %} <a  style="color: #000;">POOL</a> {% endcomment %}
                       </li>
                       <li class="mb-1">
-                        <button href="#!" class="btn btn-warning" style='border: 0px #fff solid; border-radius:1rem; background:#fbc35a; color:#000; margin-bottom:5px; width:150px;'>GYM</button>
+                        <button href="#!" class="btn btn-warning" style='border: 0px #fff solid; border-radius:1rem; background:#fbc35a; color:#000; margin-bottom:5px;'>GYM</button>
 
                         {% comment %} <a href="#!" style="color: #000;">GYM</a> {% endcomment %}
                       </li>
                       <li class="mb-1">
-                        <button href="#!" class="btn btn-warning" style='border: 0px #fff solid; border-radius:1rem; background:#fbc35a; color:#000; margin-bottom:5px; width:150px;'>CRECHE</button>
+                        <button href="#!" class="btn btn-warning" style='border: 0px #fff solid; border-radius:1rem; background:#fbc35a; color:#000; margin-bottom:5px;'>CRECHE</button>
                         {% comment %} <a href="#!" style="color: #000;">CRECHE</a> {% endcomment %}
                       </li>
                       <li>
-                        <button href="#!" class="btn btn-warning" style='border: 0px #fff solid; border-radius:1rem; background:#fbc35a; color:#000; margin-bottom:5px; width:150px;'>And More...</button>
+                        <button href="#!" class="btn btn-warning" style='border: 0px #fff solid; border-radius:1rem; background:#fbc35a; color:#000; margin-bottom:5px;'>And More...</button>
                         {% comment %} <a href="#!" style="color: #000;">And More...</a> {% endcomment %}
                       </li>
                     </ul>
                   </div>
     </section2>
-</section>
 
-<section id='sidebar_help'> 
-    <section3>
-      {% comment %} <div class="other"> {% endcomment %}
-        <div style='color:#fff; '>
-          <strong><h2 class="side1" style='color: #000  ; '>Need HELP?</h2></strong>
-                    {% comment %} <div class="col-lg-3 col-md-6 mb-4"> {% endcomment %}
-                      {% comment %} <h5 class="mb-3" style="letter-spacing: 2px; color: #7f4722;">shopping online</h5> {% endcomment %}
-                      <ul class="list-unstyled mb-4">
-                        <li class="mb-1">
-                          <button href="#!" class="btn btn-warning" style='border: 0px #fff solid; border-radius:1rem; background:#e95530; color:#000; margin-bottom:10px; padding: 1.2rem; width: 200px;'>COMPLAINT</button>
-                          {% comment %} <a  style="color: #000;">POOL</a> {% endcomment %}
-                        </li>
-                        <li class="mb-1">
-                          <button href="#!" class="btn btn-warning" style='border: 0px #fff solid; border-radius:1rem; background:#48d135; color:#000; margin-bottom:10px; padding:1.2rem; width:200px;'>SUGGESTION</button>
-  
-                          {% comment %} <a href="#!" style="color: #000;">GYM</a> {% endcomment %}
-                        </li>
-
-                      </ul>
-                    </div>
-      </section3>
     {% comment %} <button class='btn btn-warning' href='#' type="button" >COMPLAINTS</button>
     <br>
     <br>
@@ -451,26 +396,14 @@ section2 {
     <!--First slide-->
     <div class="carousel-item active">
 
-      <div class="col-md-3" style="float:left;" >
+      <div class="col-md-3" style="float:left;  " >
        <div class="card mb-2" style="border-radius:2rem;">
           <img class="card-img-top " style='border-radius:2rem;'
             src="https://freedesignfile.com/upload/2019/08/3D-building-vector.jpg" alt="Card image cap">
           <div class="card-body">
-            <center><h4 class="card-title">1-2-3 BHK</h4></center>
+            <h4 class="card-title">1 BHK</h4>
             <p class="card-text"></p>
-            <center><a class="btn btn-warning" style='color:#000000; border-radius:1rem;'>BUY</a></center>
-          </div>
-        </div>
-      </div>
-{% comment %} 
-      <div class="col-md-3" style="float:left">
-        <div class="card mb-2"  style="border-radius:2rem;">
-          <img class="card-img-top"  style="border-radius:2rem;"
-          src="https://freedesignfile.com/upload/2019/08/3D-building-vector.jpg" alt="Card image cap">
-          <div class="card-body">
-            <center><h4 class="card-title">2 BHK</h4></center>
-            <p class="card-text"></p>
-            <center><a class="btn btn-warning" style='color:#000000; border-radius:1rem;'>BUY</a></center>
+            <a class="btn btn-warning" style='color:#000000;'>Buy</a>
           </div>
         </div>
       </div>
@@ -480,21 +413,33 @@ section2 {
           <img class="card-img-top"  style="border-radius:2rem;"
           src="https://freedesignfile.com/upload/2019/08/3D-building-vector.jpg" alt="Card image cap">
           <div class="card-body">
-            <center><h4 class="card-title">3 BHK</h4></center>
+            <h4 class="card-title">2 BHK</h4>
             <p class="card-text"></p>
-            <center><a class="btn btn-warning" style='color:#000000; border-radius:1rem;'>BUY</a></center>
+            <a class="btn btn-warning" style='color:#000000;'>Buy</a>
           </div>
         </div>
-      </div> {% endcomment %}
+      </div>
+
+      <div class="col-md-3" style="float:left">
+        <div class="card mb-2"  style="border-radius:2rem;">
+          <img class="card-img-top"  style="border-radius:2rem;"
+          src="https://freedesignfile.com/upload/2019/08/3D-building-vector.jpg" alt="Card image cap">
+          <div class="card-body">
+            <h4 class="card-title">3 BHK</h4>
+            <p class="card-text"></p>
+            <a class="btn btn-warning" style='color:#000000;'>Buy</a>
+          </div>
+        </div>
+      </div>
 
        <div class="col-md-3" style="float:left">
        <div class="card mb-2"  style="border-radius:2rem;">
           <img class="card-img-top"  style="border-radius:2rem;"
           src="https://freedesignfile.com/upload/2019/08/3D-building-vector.jpg" alt="Card image cap">
           <div class="card-body">
-            <center><h4 class="card-title">1-2-3 BHK</h4></center>
+            <h4 class="card-title">1, 2 ,3 BHK</h4>
             <p class="card-text"></p>
-            <center><a class="btn btn-warning" style='color:#000000; border-radius:1rem;'>RENT</a></center>
+            <a class="btn btn-warning" style='color:#000000;'>Buy</a>
           </div>
         </div>
       </div>
@@ -565,7 +510,7 @@ section2 {
 
   
     
-<div class="features" >
+<div class="features">
 
       <section>
     <medium><h1 class="home_services" style='margin-left:180px'>Home Services</h1></medium>
@@ -588,21 +533,18 @@ section2 {
                   <li>
                     <a href="#!" style="color: #4f4f4f;">Groceries</a>
                   </li>
-                  <li class='mb-1'>
-                    <a style="color: #4f4f4f; " >Etc..</a>
-                  </li>
                 </ul>
                 </center>
 </section>
-<section >
+<section>
 {% comment %} <div class="other"> {% endcomment %}
-    <medium><h1 class="other_services" style='margin-right:150px;'>Other Services</h1></medium>
+    <medium><h1 class="other_services" style='margin-right:180px;'>Other Services</h1></medium>
     <br>
     <br>
               {% comment %} <div class="col-lg-3 col-md-6 mb-4"> {% endcomment %}
                 {% comment %} <h5 class="mb-3" style="letter-spacing: 2px; color: #7f4722;">shopping online</h5> {% endcomment %}
                 <center>
-                <ul class="list-unstyled mb-4" style='margin-left: 25%;'  >
+                <ul class="list-unstyled mb-4" style='margin-left: 20%;'  >
                   <li class="mb-1">
                     <a href="#!" style="color: #4f4f4f;">Resident List</a>
                   </li>
