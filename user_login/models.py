@@ -76,6 +76,8 @@ class Account(AbstractUser, PermissionsMixin):
 
     def has_module_perm(self, app_label):
         return True
+    
+    # if user.is_active
 
 
 STATUS = (
@@ -99,3 +101,4 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse('user_login:user_dashboard')
+    

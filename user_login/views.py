@@ -124,8 +124,8 @@ def registration_view(request):
             form = RegistrationForm()
             context['registration_form'] = form
     except IntegrityError:
-        q = email + ' already exist'
-        messages.error(request, q)
+        err = email + ' already exist'
+        messages.error(request, err)
     return render(request, "register.html", context)
 
 
@@ -157,6 +157,8 @@ def login_view(request):
 
 
 def logout_view(request):
+    # user = (request, user)
+    # user.is_active = False
     logout(request)
     return redirect('user_login:dashboard')
 
