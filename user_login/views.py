@@ -1,62 +1,60 @@
-# from account.models import User
 import pdb
-from pickletools import read_uint1
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate, get_user_model  # with the help of this we can authenticate the users and then we can allow them to proceed further.
 from django.db import IntegrityError
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView, DeleteView
-from user_login.forms import RegistrationForm, LoginForm, AddNews, AddComplaint
+from user_login.forms import RegistrationForm, LoginForm, NewsForm, ComplaintForm
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
-from .forms import RegistrationForm
 from django.core.mail import send_mail
 from django.contrib import messages
 import random
 from django.conf import settings
-from .models import Account, Post 
+from .models import Account, News
 # Account = get_user_model()
 
 @login_required(login_url='/user_login/login/')
-def add_news(request): 
-    form= AddNews()
+def newsadd(request):
+    form = NewsForm()
     if request.method=='POST':
-        form= AddNews(request.POST,request.FILES)
+        form = NewsForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
             return redirect('/user_login/dashboard/')
     context={
         'form':form,
     }
-    return render(request,'post/add_news.html/',context)
+    return render(request,'news_add.html/',context)
     # render responds by HTTP response of context. Here (i.e) forms
 
 class NewsList(ListView):
-    queryset = Post.objects.filter(status=1).order_by('-created_on')
-    template_name = 'all_posts.html'
+    queryset = News.objects.filter(status=1).order_by('-created_on')
+    template_name = 'user_login:dashboard.html'
 
 class NewsDetail(DetailView):
-    model = Post
-    template_name = 'news_detail.html'
-class DeleteNews(DeleteView):
-    model = Post
-    template_name = 'delete_blog.html'
-    success_url = reverse_lazy('user_login:news_list')# it asked to provide a success url, so...
+    model = News
+    template_name = 'user_login:news_detail.html'
+    
+class NewsDelete(DeleteView):
+    model = News
+    template_name = 'user_login:news_delete.html'
+    success_url = reverse_lazy('user_login:dashboard')# it asked to provide a success url, so...
 
 
     
 @login_required(login_url='/user_login/login/')
-def add_complaint(request): 
-    form= AddComplaint()
+def complaintadd(request):
+    form= ComplaintForm()
     if request.method=='POST':
-        form= AddComplaint(request.POST,request.FILES)
+        form= ComplaintForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
             return redirect('/user_login/dashboard/')
     context={
         'form':form,
     }
-    return render(request,'post/add_complaint.html',context)
+    return render(request,'post/complaint_add.html',context)
     # render responds by HTTP response of context. Here (i.e) forms
     
     
@@ -192,6 +190,56 @@ def dashboard_view(request):
 
 def user_dashboard_view(request):
     return render(request,'user_dashboard.html')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # def registration_view(request):

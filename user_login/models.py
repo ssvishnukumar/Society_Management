@@ -1,9 +1,6 @@
-from enum import unique
-
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin, AbstractUser
+from django.contrib.auth.models import BaseUserManager, PermissionsMixin, AbstractUser
 from django.urls import reverse
-from django.utils import timezone
 
 
 class MyAccountManager(BaseUserManager): # This function is created after the Account class is created.
@@ -84,7 +81,7 @@ STATUS = (
     (0,"Draft"),
     (1,"Publish")
 )
-class Post(models.Model):
+class News(models.Model):
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
     author = models.ForeignKey(Account, on_delete= models.CASCADE,related_name='blog_posts')

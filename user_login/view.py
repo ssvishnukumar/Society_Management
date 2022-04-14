@@ -53,10 +53,10 @@ def add_complaint(request):
             blogpost.save()
             obj = form.instance
             alert = True
-            return render(request, "sc/add_complaint.html", {'obj': obj, 'alert': alert})
+            return render(request, "sc/complaint_add.html", {'obj': obj, 'alert': alert})
     else:
         form = NoticeForm()
-    return render(request, "sc/add_complaint.html", {'form': form})
+    return render(request, "sc/complaint_add.html", {'form': form})
 
 
 def profile(request):

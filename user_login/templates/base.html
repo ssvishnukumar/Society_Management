@@ -92,9 +92,15 @@
                           </div> {% endcomment %}
 
                       {% endif %}
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'user_login:user_dashboard' %}">Dashboard</a>
+                        </li>
+                        {% else %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'user_login:dashboard' %}">Dashboard</a>
                         </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>

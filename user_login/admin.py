@@ -1,5 +1,4 @@
 from django.contrib import admin
-from user_login.models import Account
 from django.contrib.auth.admin import UserAdmin
 from .models import *
 
@@ -16,10 +15,10 @@ class AccountAdmin(UserAdmin):
 admin.site.register(Account, AccountAdmin)
 
 # for viewing trhe posts
-class PostAdmin(admin.ModelAdmin):
+class NewsAdmin(admin.ModelAdmin):
     list_display = ('title', 'slug', 'status','created_on')
     list_filter = ("status",)
     search_fields = ['title', 'content']
     prepopulated_fields = {'slug': ('title',)}
 
-admin.site.register(Post, PostAdmin)
+admin.site.register(News, NewsAdmin)
