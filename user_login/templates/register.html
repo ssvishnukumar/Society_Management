@@ -6,14 +6,15 @@
 {% block css %}
 <br>
 <center>
-    <div class="shadow-lg p-4 mb-auto bg-body rounded" 
+    <div class="shadow-lg p-4 mb-auto bg-body" 
             style='
                 width: 600px;  
                 margin-top: 20px;
                 bottom:20px;
                 height:auto;
-                border-radius:50%;
-                '><br>
+                border-radius:2rem;
+                '>
+                <br>
                 
 <h1 style="font-weight:bold;">REGISTER</h1>
 <br>
@@ -25,14 +26,14 @@
 <!--sends it to the server, and then receives back its response. -->
 
 <!--GET , by contrast, bundles the submitted data into a string, and uses this to compose a URL.-->
-<div class="form-group" >
+<div class="form-group" style="background:#ffd381; border-radius:2rem; padding:2.5rem;" >
 <form method="POST"> <!-- here we are specifying the method for the button we used below.-->
    {% csrf_token %} <!-- # its an encryption token.-->
 
-
+   <div class="mb-3" >
     {% for field in registration_form %}
-        <p><div class="mb-3">
-            <small>{{field.label_tag}}</small><br>
+        <p>
+            <small>{{field.label_tag}} </small><br>
             {{field}}<br>
 
 <!--            {% if field.help_text %}-->
@@ -45,11 +46,15 @@
         {% endfor %}
         </div>
 
-    <button class="btn btn-primary">Register</button>
+    {% comment %} <button class="btn btn-primary">Register</button> {% endcomment %}
+    <button class="btn btn-warning" style='border: 3px #000000 solid; border-radius:2rem; background:#fff'>Register</button>
+
     </div>
 </form>
 </div>
 </center>
+<br>
+<br>
 {% endblock %}
 {% endblock %}
 

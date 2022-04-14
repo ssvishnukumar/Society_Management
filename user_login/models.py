@@ -98,4 +98,4 @@ class Post(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('user_login:dashboard')
+        return reverse('user_login:user_dashboard')

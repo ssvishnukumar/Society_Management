@@ -3,7 +3,8 @@ from . import views
 from django.contrib.auth import views as auth_views
 
 from .views import (
-    logout_view, login_view, registration_view, dashboard_view, otp_view, add_news, add_complaint
+    logout_view, login_view, registration_view, otp_view, add_news, add_complaint, user_dashboard_view, dashboard_view, NewsDetail, 
+    NewsList, DeleteNews
 )
 
 
@@ -15,6 +16,7 @@ urlpatterns = [
     # path('otp/', otp_view, name='otp'),
     path('otpverify/', otp_view, name='otp'),
     path("dashboard/", dashboard_view, name="dashboard"),
+    path("user_dashboard/", user_dashboard_view, name="user_dashboard"),
 
 
     # path("password_reset/", auth_views.PasswordResetView.as_view(template_name='password_reset1.html'), name="password_reset"),
@@ -34,7 +36,14 @@ urlpatterns = [
 
 
     path('add-news/', add_news, name='add_news'),
+    path('post-list/', NewsList.as_view(), name='news_list'),
+    path('<str:slug>/', NewsDetail.as_view(), name='news_detail'),
+    path('delete/<str:slug>/', DeleteNews.as_view(), name='delete_blog'),
+    
+    
     path('add-complaint/', add_complaint, name='add_complaint'),
+
+
     
     ]
 

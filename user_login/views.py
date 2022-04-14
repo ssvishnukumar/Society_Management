@@ -1,9 +1,11 @@
 # from account.models import User
 import pdb
+from pickletools import read_uint1
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate, get_user_model  # with the help of this we can authenticate the users and then we can allow them to proceed further.
 from django.db import IntegrityError
-
+from django.urls import reverse_lazy
+from django.views.generic import DetailView, ListView, DeleteView
 from user_login.forms import RegistrationForm, LoginForm, AddNews, AddComplaint
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
@@ -12,7 +14,7 @@ from django.core.mail import send_mail
 from django.contrib import messages
 import random
 from django.conf import settings
-from .models import Account
+from .models import Account, Post 
 # Account = get_user_model()
 
 @login_required(login_url='/user_login/login/')
@@ -28,6 +30,20 @@ def add_news(request):
     }
     return render(request,'post/add_news.html/',context)
     # render responds by HTTP response of context. Here (i.e) forms
+
+class NewsList(ListView):
+    queryset = Post.objects.filter(status=1).order_by('-created_on')
+    template_name = 'all_posts.html'
+
+class NewsDetail(DetailView):
+    model = Post
+    template_name = 'news_detail.html'
+class DeleteNews(DeleteView):
+    model = Post
+    template_name = 'delete_blog.html'
+    success_url = reverse_lazy('user_login:news_list')# it asked to provide a success url, so...
+
+
     
 @login_required(login_url='/user_login/login/')
 def add_complaint(request): 
@@ -127,7 +143,8 @@ def login_view(request):
             if user:
                 # here wer are allowing the user to login.
                 login(request,user)
-                return redirect('user_login:dashboard')
+                return redirect('user_login:user_dashboard')
+                # return render(request, 'dashboard.html')
     # if user.is_authenticated:  # if the user is authenticated we are redirecting ..
     #     # messages.success(request, 'You are already authenticated user.')
     #     return redirect('user_login:dashboard')
@@ -171,6 +188,8 @@ def otp_view(request):
 def dashboard_view(request):
     return render(request,'dashboard.html')
 
+def user_dashboard_view(request):
+    return render(request,'user_dashboard.html')
 
 
 # def registration_view(request):

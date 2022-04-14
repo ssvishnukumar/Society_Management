@@ -4,12 +4,13 @@
 {% block css %}
 <center>
 <br>
-<div class="shadow-lg p-4 mb-auto bg-body rounded" 
+<div class="shadow-lg p-4 mb-auto bg-body" 
             style='
                 width: 600px;  
                 margin-top:50px; 
-                height:530px;
-                border-radius:50%;
+                height:560px;
+                {% comment %} border: 1px solid ; {% endcomment %}
+                border-radius:2rem;
                 '>
 <br>
 <h1 style="font-weight:bold;">SIGN IN</h1>
@@ -23,19 +24,19 @@
 
 <!--GET , by contrast, bundles the submitted data into a string, and uses this to compose a URL.-->
 
-<div class="form-group">
+<div class="form-group" style="background:#ffd381; border-radius:2rem; padding:0.5rem;">
 <form method="POST"> <!-- here we are specifying the method for the button we used below.-->
 
    {% csrf_token %} <!-- # its an encryption token.-->
 
-            <div class="mt-3 container mt-4">
+            <div class="mt-3 container mt-4" >
                 <div class="mb-3">
                     <label class="form-label">Email</label>
-                    <input type="email" class="form-control" name="email" required id ='id_email' placeholder="Enter your registered email">
+                    <input type="email" class="form-control" name="email" required id ='id_email' placeholder="Enter your registered email" style="width:80%; border-radius:2rem;">
                   </div>
                   <div class="mb-3">
                     <label class="form-label" >Password</label>
-                    <input type="password" class="form-control" name="password" required id ='id_password' placeholder="Enter your password">
+                    <input type="password" class="form-control" name="password" required id ='id_password' placeholder="Enter your password" style="width:80%; border-radius:2rem; ">
                   </div>
                   {% if form.non_field_errors %}
     <ul class='form-errors'>
@@ -73,10 +74,9 @@
             </small>
         {% endif %} {% endcomment %}
 
-    <button class="btn btn-primary">SignIn</button>
-    <br>
-    <br>
-    <p><a href="{% url 'user_login:password_reset'%}">Forget password?</a></p>
+    <button class="btn btn-warning" style='border: 3px #000000 solid; border-radius:2rem; background:#fff'>SignIn</button>
+    <br><br>
+    <p><a href="{% url 'user_login:password_reset'%}" style='color:#303030; '>Forget password?</a></p>
     </div>
 </form>
 </div>
