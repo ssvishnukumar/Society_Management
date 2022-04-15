@@ -40,10 +40,10 @@ class NewsForm(forms.ModelForm):
 
     class Meta:
         model = News
-        fields = ('title','slug','content','author','status',)
+        fields = ('title','content','author','status',)
         widgets = {
             'title': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Title of the News'}),
-            'slug': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Copy the title with no space and a hyphen in between (slug)'}),
+            # 'slug': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Copy the title with no space and a hyphen in between (slug)'}),
             'author': forms.TextInput(attrs={'class':'form-control', 'value':'', 'type':'hidden',  'id':'id_num', }), # here after , we have to create a small javascript code in news_add.html ... # here, 'id':'id_num' is created to make the reference to the java script code.
             'content': forms.Textarea(attrs={'class':'form-control', 'placeholder':'''Write The Content Here.'''}),
             'status': forms.Select(attrs={'class':'form-control'}),
@@ -54,10 +54,10 @@ class ComplaintForm(forms.ModelForm):
 
     class Meta:
         model = News
-        fields = ('title','slug','content','author','status',)
+        fields = ('title','content','author','status',)
         widgets = {
             'title': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Title of the Complaint'}),
-            'slug': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Copy the title with no space and a hyphen in between (slug)'}),
+            # 'slug': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Copy the title with no space and a hyphen in between (slug)'}),
             'author': forms.TextInput(attrs={'class':'form-control', 'value':'', 'type':'hidden',  'id':'id_num', }), # here after , we have to create a small javascript code in news_add.html ... # here, 'id':'id_num' is created to make the reference to the java script code.
             'content': forms.Textarea(attrs={'class':'form-control', 'placeholder':'''Write Your Complaint Here.'''}),
             'status': forms.Select(attrs={'class':'form-control'}),

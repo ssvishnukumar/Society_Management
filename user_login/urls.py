@@ -4,7 +4,7 @@ from django.contrib.auth import views as auth_views
 
 from .views import (
     logout_view, login_view, registration_view, otp_view, user_dashboard_view, dashboard_view,
-newsadd, complaintadd, NewsList, NewsDetail, NewsDelete
+newsadd, complaintadd
 )
 
 
@@ -35,15 +35,13 @@ urlpatterns = [
     path("reset/done/", auth_views.PasswordResetCompleteView.as_view(template_name='registration/password_reset_complete.html'), name="password_reset_complete"),
 
 
-    path('newslist/', NewsList.as_view(), name='news_list'),
-    path('add/', newsadd, name='add_news'),
-    path('<str:slug>/', NewsDetail.as_view(), name='news_detail'),
-    path('delete/<str:slug>/', NewsDelete.as_view(), name='news_delete'),
+    # path('news_list', NewsList.as_view(), name='news_list'),
+    path('news/add/', newsadd, name='news_add'),
+    # path('<int:pk>/', NewsDetail.as_view(), name='news_detail'),
+    # path('delete/<int:author_id>/<int:id>/', NewsDelete.as_view(), name='news_delete'),
     
     
-    # path('add-complaint/', complaintadd, name='add_complaint'),
-
-
+    path('complaint/add/', complaintadd, name='complaint_add'),
     
     ]
 

@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% block title %}
-Add News
+Add Post
 {% endblock %}
 
 {% block content %}
 
 {% if user.is_authenticated %}
 <br>
-<h1 style="color:#">Add News</h1>
+<h1>Add Post</h1>
 <!--POST and GET in django-->
 
 <!--POST-->
@@ -19,7 +19,7 @@ Add News
 
 <form method="POST">
     {% csrf_token %}
-    <div class="container mt-4" style='color:#'>
+    <div class="container mt-4">
     {{ form.as_p }}
     <button class="btn btn-primary">Post</button>
     </div>
@@ -34,28 +34,4 @@ Add News
 {% else %}
     You are not allowed :)
 {% endif %}
-<div class="container">
-    <div class="row">
-        <!-- Blog Entries Column -->
-        <div class="col-md-center mt-3 left">
-            {% for post in news_list %}
-            <div class="card mb-4">
-                <div class="card-body">
-<!--                    next four lines are the display for all the posts-->
-                    <h2 class="card-title">{{ post.title }}</h2>
-                    <p class="card-text text-muted h6">{{ post.author }} | {{ post.created_on}} </p>
-                    <p class="card-text">{{post.content|slice:":200" }}</p>
-                    <a href="{% url 'blog:post_detail' post.slug  %}" class="btn btn-primary">Read More...</a>
-                   {% if user.is_authenticated %}
-                    {% if user.id == post.author.id %}
-                    <a href="{% url 'user_login:delete_blog' post.slug  %}" class="btn btn-danger">Delete Post</a>
-                    {% endif %}
-                    {% endif %}
-
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</div>
 {% endblock %}

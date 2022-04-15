@@ -52,9 +52,8 @@
             box-shadow: 0 16px 48px #dedede;
 
         }
-        
-        {% block css %}
-        
+
+        {% block css %}        
         {% endblock %}
     </style>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow" id="mainNav">
@@ -66,10 +65,16 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
+
                         {% if user.is_authenticated %}
+
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'user_login:logout' %}">LOGOUT</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'user_login:news_detail' %}">detail</a>
+                        </li>
+
                       {% else %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'user_login:register' %}">REGISTER</a>

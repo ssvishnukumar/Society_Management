@@ -24,24 +24,44 @@ def newsadd(request):
             return redirect('/user_login/dashboard/')
     context={
         'form':form,
+        
     }
-    return render(request,'news_add.html/',context)
+    return render(request,'post/news_add.html',context)
     # render responds by HTTP response of context. Here (i.e) forms
 
-class NewsList(ListView):
-    queryset = News.objects.filter(status=1).order_by('-created_on')
-    template_name = 'user_login:dashboard.html'
-
-class NewsDetail(DetailView):
-    model = News
-    template_name = 'user_login:news_detail.html'
+# class NewsList(ListView):
+#     queryset = News.objects.filter(status=1).order_by('-created_on')
+#     template_name = 'user_login:dashboard.html'
     
-class NewsDelete(DeleteView):
-    model = News
-    template_name = 'user_login:news_delete.html'
-    success_url = reverse_lazy('user_login:dashboard')# it asked to provide a success url, so...
+#     def get_absolute_url(self):
+#         context = {
+#             'pk': self.id,
+            
+#         }
+    
 
+# class NewsDetail(DetailView):
+#     model = News
+#     template_name = 'user_login:news_detail.html'
+#     def get_absolute_url(self):
+#         context = {
+#             'pk': self.id,
+            
+#         }
+    
+    
+# class NewsDelete(DeleteView):
+#     model = News
+#     template_name = 'user_login:news_delete.html'
+#     success_url = reverse_lazy('user_login:dashboard')# it asked to provide a success url, so...
 
+def dashboard_view(request):
+    obj = News.objects.filter(status=1).order_by('-created_on')
+    return render(request,'dashboard.html', {'news': obj})
+
+def user_dashboard_view(request):
+    obj = News.objects.filter(status=1).order_by('-created_on')
+    return render(request,'user_dashboard.html', {'news': obj})
     
 @login_required(login_url='/user_login/login/')
 def complaintadd(request):
@@ -185,11 +205,6 @@ def otp_view(request):
     return render(request, 'otp.html')
 
 
-def dashboard_view(request):
-    return render(request,'dashboard.html')
-
-def user_dashboard_view(request):
-    return render(request,'user_dashboard.html')
 
 
 
