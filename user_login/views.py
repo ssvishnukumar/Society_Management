@@ -21,7 +21,7 @@ def newsadd(request):
         form = NewsForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('/user_login/dashboard/')
+            return redirect('/user_login/user_dashboard/')
     context={
         'form':form,
         

@@ -179,20 +179,10 @@
   {% comment %} border-bottom: solid 5px rgba(255, 255, 255, 0.15); {% endcomment %}
   position: relative;
 }
-section2 {
-  color: #fff;
-}
-section3 {
-  color: #fff;
-}
 
-}
-section2 {
-  color: #fff;
-}
 
 .card-block{
-  width:300px; height:300px; border-radius:1rem; padding: 0.5rem; border-radius:2rem; padding: 2rem;  border: solid 1px rgba(255, 255, 255, 0.15);
+  width:300px; height:300px; padding: 0.5rem; border-radius:2rem; padding: 1.5rem;  
             background: rgba(255, 255, 255, 0.25); border: 1px solid rgba(255, 255, 255, 0.7);  
 }
     {% endblock %}
@@ -352,56 +342,30 @@ section2 {
 <h1>
   <br>
   <medium>
-    <p style="margin-left:-70px;">Recent News:</p>
+    <a style="margin-left:-70px;">Recent News: </a>
+
 </medium>
 </h1>
 
 
-    <div class="main-container" style=" width: 100rem; height: 23.rem; padding: 0.5rem; bottom: 0.5rem;">
-<div class="container-fluid" style='color: #000000; width: 105rem;' >
-    <div class="row flex-row flex-nowrap" >
-
-<div class="col-12 col-sm-6 col-md-4 col-lg-2">
-  <div class="card card-block">Card</div>
-</div>
-<div class="col-12 col-sm-6 col-md-4 col-lg-2">
-  <div class="card card-block" style='margin-left: 60px;'>Card1</div>
-</div>
-<div class="col-12 col-sm-6 col-md-4 col-lg-2">
-  <div class="card card-block" style='margin-left: 120px;'>Card</div>
-</div>
-<div class="col-12 col-sm-6 col-md-4 col-lg-2">
-  <div class="card card-block" style='margin-left: 180px;'>Card</div>
-</div>
-<div class="col-12 col-sm-6 col-md-4 col-lg-2">
-  <div class="card card-block" style='margin-left: 240px;'>Card</div>
-</div>
-<div class="col-12 col-sm-6 col-md-4 col-lg-2">
-  <div class="card card-block" style='margin-left: 300px;'>Card</div>
-</div>
-<div class="col-12 col-sm-6 col-md-4 col-lg-2">
-  <div class="card card-block" style='margin-left: 360px;'>Card</div>
-</div>
-<div class="col-12 col-sm-6 col-md-4 col-lg-2">
-  <div class="card card-block" style='margin-left: 420px;'>Card</div>
-</div>
-<div class="col-12 col-sm-6 col-md-4 col-lg-2">
-  <div class="card card-block" style='margin-left: 480px;'>Card</div>
-</div>
-<div class="col-12 col-sm-6 col-md-4 col-lg-2">
-  <div class="card card-block" style='margin-left: 540px;'>Card</div>
-</div>
-<div class="col-12 col-sm-6 col-md-4 col-lg-2">
-  <div class="card card-block" style='margin-left: 600px;'>Card</div>
-</div>
-<div class="col-12 col-sm-6 col-md-4 col-lg-2">
-  <div class="card card-block" style='margin-left: 660px;'>Card</div>
-</div>
-
-</div>
-</div>
-</div>
-
+<div class="main-container" style=" width: 100rem; height: 23.rem; padding: 0.5rem; bottom: 0.5rem; ">
+  <div class="container-fluid" style='color: #000000; width: 100rem;' >
+      <div class="row flex-row flex-nowrap" style="margin-left:-60px; " >
+  
+  {% comment %} <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+    <div class="card card-block">Card</div>
+  </div> {% endcomment %}
+  {% for nws in news %}
+  <div class="col-12 col-sm-6 col-md-4 col-lg-2" style="margin-left:60px;  ">
+    <div class="card card-block" style="padding:#rem;"><strong style="text-align:#;  text-transform:uppercase; ">{{ nws.title|truncatewords:"2" }} | {{nws.author.username|truncatewords:"2"}}</strong> {{ nws.content|slice:":170"|capfirst }}</div>
+  </div >
+  {% endfor %}
+  
+  
+  </div>
+  </div>
+  </div>
+  
 {% comment %} </center> {% endcomment %}
 </hr>
 
