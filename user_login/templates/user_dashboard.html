@@ -495,7 +495,7 @@
 </div> {% endcomment %}
 {% for nws in news %}
 <div class="col-12 col-sm-6 col-md-4 col-lg-2" style="margin-left:60px;  ">
-  <div class="card card-block" style="padding:#rem;"><strong style="text-align:#;  text-transform:uppercase; ">{{ nws.title|truncatewords:"2" }} | {{nws.author.username|truncatewords:"2"}}</strong> {{ nws.content|slice:":170"|capfirst }}</div>
+  <div class="card card-block" style="padding:#rem;"><strong style="text-align:#;  text-transform:uppercase; ">{{ nws.title|truncatewords:"2"|slice:':20' }} | {{nws.author.username|truncatewords:"2"}}</strong> {{ nws.content|slice:":150"|capfirst }}</div>
 </div >
 {% endfor %}
 
@@ -621,7 +621,7 @@
           <div class="card-body">
             <center><h4 class="card-title">1-2-3 BHK</h4></center>
             <p class="card-text"></p>
-            <center><a class="btn btn-warning" style='color:#000000; border-radius:1rem; width:10rem;'>BUY</a></center>
+            <center><a class="btn btn-warning" href="{% url 'user_login:buy_flat' %}" style='color:#000000; border-radius:1rem; width:10rem;'>BUY</a></center>
           </div>
         </div>
       </div>
@@ -657,7 +657,7 @@
           <div class="card-body">
             <center><h4 class="card-title">1-2-3 BHK</h4></center>
             <p class="card-text"></p>
-            <center><a class="btn btn-warning" style='color:#000000; border-radius:1rem; width:10rem;'>RENT</a></center>
+            <center><a class="btn btn-warning" href="{% url 'user_login:rent_flat' %}" style='color:#000000; border-radius:1rem; width:10rem;'>RENT</a></center>
           </div>
         </div>
       </div>

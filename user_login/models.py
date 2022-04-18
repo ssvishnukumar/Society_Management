@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import BaseUserManager, PermissionsMixin, AbstractUser
 from django.urls import reverse
+from more_itertools import first
 
 
 class MyAccountManager(BaseUserManager): # This function is created after the Account class is created.
@@ -98,4 +99,52 @@ class News(models.Model):
 
     def get_absolute_url(self):
         return reverse('user_login:user_dashboard')
+    
+BHK = (
+    (1,'1BHK'),
+    (2,'2BHK'),
+    (3,'3BHK'),
+) 
+
+FURNISHED = (
+    (0, 'Not Furnished'),
+    (1, 'FURNISHED'),
+)
+class BuyRent(models.Model):
+    # username = models.CharField(max_length=50)
+    # first_name = models.CharField(max_length=100)
+    # last_name = models.CharField(max_length=100)
+    # email = models.EmailField(unique=False)
+    # mobile_no = models.CharField(max_length=14)
+    # buy_flat = models.BooleanField(default=False)
+    # rent_flat = models.BooleanField(default=False)
+    # furnished = models.CharField(max_length=10)
+    # pool = models.CharField(max_length=20)
+    # gym = models.CharField(max_length=20)
+    # creche = models.CharField(max_length=20)
+    # no_of_members = models.IntegerField(default=0)
+    # flat_type = models.CharField(max_length=20)
+    
+    
+    email = models.EmailField(verbose_name='email', max_length=50, unique=False)
+    username = models.CharField(max_length=200, unique=False)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField( max_length=100)
+    
+    mobile_no = models.CharField(max_length=11)
+    buy_flat = models.BooleanField(default=False)
+    rent_flat = models.BooleanField(default=False)
+    
+    flat_type = models.IntegerField(choices=BHK, default=1)
+    # flat_type = models.CharField(max_length=10)
+    pool = models.BooleanField(default=False)
+    gym = models.BooleanField(default=False)
+    creche = models.BooleanField(default=False)
+    
+    cleaning_house = models.BooleanField(default=False)
+    furnished = models.IntegerField(choices=FURNISHED, default=0)
+    
+    no_of_members = models.IntegerField(default=1)
+
+    emi = models.BooleanField(default=False)
     

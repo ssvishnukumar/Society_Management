@@ -4,7 +4,7 @@ from django.contrib.auth import views as auth_views
 
 from .views import (
     logout_view, login_view, registration_view, otp_view, user_dashboard_view, dashboard_view,
-newsadd, complaintadd
+newsadd, complaintadd, buyview, rentview, thanksview
 )
 
 
@@ -42,6 +42,10 @@ urlpatterns = [
     
     
     path('complaint/add/', complaintadd, name='complaint_add'),
+    
+    path('buyflat/', buyview, name='buy_flat'), 
+    path('rentflat/', rentview, name='rent_flat'),
+    path('thanks/', thanksview, name='thanks')
     
     ]
 

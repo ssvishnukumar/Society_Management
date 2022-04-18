@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}Buy Flat{% endblock %}
+{% block content %}
+{% block css %}
+
+  
+<center>
+<br>
+<div class="shadow-lg p-4 mb-auto bg-body" 
+            style='
+                width: 600px;  
+                margin-top:20px; 
+                height:auto;
+                bottom:20px;
+                border-radius:2rem;
+                
+                '>
+<br>
+<h1 style="font-weight:bold;">RENT FLAT</h1>
+<br>
+
+
+
+<div class="form-group" style="background:#ffd381; border-radius:2rem; padding:0.5rem;">
+    <form action="{% url 'user_login:rent_flat' %}" method="POST"> <!-- here we are specifying the method for the button we used below.-->
+    
+       {% csrf_token %} <!-- # its an encryption token.-->
+    
+                <div class="mt-3 container mt-4" >
+                    {% for field in rent %}
+                    <p>
+                        <small>{{field.label_tag}} </small>
+                        <a style="width:50%; border-radius:2rem;"> {{field}} </a><br>
+            
+                    </p>
+                    {% endfor %}
+
+
+                    <button class="btn btn-warning" style='border: 3px #000000 solid; border-radius:2rem; background:#fff'>Rent</button>
+                    <br><br>
+                    </div>
+                </form>
+                </div>
+                </center>
+                <br>
+                <br>
+                {% endblock %}
+                {% endblock %}
+                

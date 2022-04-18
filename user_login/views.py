@@ -5,13 +5,14 @@ from django.db import IntegrityError
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView, DeleteView
 from user_login.forms import RegistrationForm, LoginForm, NewsForm, ComplaintForm
+from user_login.forms import *
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.contrib import messages
 import random
 from django.conf import settings
-from .models import Account, News
+from .models import Account, News, BuyRent
 # Account = get_user_model()
 
 @login_required(login_url='/user_login/login/')
@@ -24,7 +25,6 @@ def newsadd(request):
             return redirect('/user_login/user_dashboard/')
     context={
         'form':form,
-        
     }
     return render(request,'post/news_add.html',context)
     # render responds by HTTP response of context. Here (i.e) forms
@@ -56,11 +56,12 @@ def newsadd(request):
 #     success_url = reverse_lazy('user_login:dashboard')# it asked to provide a success url, so...
 
 def dashboard_view(request):
-    obj = News.objects.filter(status=1).order_by('-created_on')
+    obj = News.objects.filter(status=1).order_by('-created_on')[:10]
+
     return render(request,'dashboard.html', {'news': obj})
 
 def user_dashboard_view(request):
-    obj = News.objects.filter(status=1).order_by('-created_on')
+    obj = News.objects.filter(status=1).order_by('-created_on')[:10]
     return render(request,'user_dashboard.html', {'news': obj})
     
 @login_required(login_url='/user_login/login/')
@@ -77,7 +78,62 @@ def complaintadd(request):
     return render(request,'post/complaint_add.html',context)
     # render responds by HTTP response of context. Here (i.e) forms
     
+def buyview(request):
+    form = BuyForm()
+    if request.POST:
+        buy = BuyRent.objects.create()
+        buy.email = request.POST['email']
+        buy.username = request.POST['username']
+        buy.first_name = request.POST['first_name']
+        buy.last_name = request.POST['last_name']
+        buy.mobile_no = request.POST['mobile_no']
+        buy.flat_type = request.POST['flat_type']
+        # buy.cleaning_house = request.POST['cleaning_house']
+        buy.furnished = request.POST['furnished']
+        buy.buy_flat = True
+        # pdb.set_trace()
+        buy.save()
+        return redirect('user_login:thanks')
+    context= {
+        'buy':form
+    }
+    return render(request, 'buyflat.html', context)
+
+def rentview(request):
+    form = RentForm()
+    if request.POST:
+        rent = BuyRent.objects.create()
+        rent.email = request.POST['email']
+        rent.username = request.POST['username']
+        rent.first_name = request.POST['first_name']
+        rent.last_name = request.POST['last_name']
+        rent.mobile_no = request.POST['mobile_no']
+        rent.flat_type = request.POST['flat_type']
+        rent.pool = request.POST['pool']
+        rent.gym = request.POST['gym']
+        rent.creche = request.POST['creche']
+        rent.cleaning_house = request.POST['cleaning_house']
+        rent.furnished = request.POST['furnished']
+        rent.no_of_members = request.POST['no_of_members']
+        rent.rent_flat = True
+        rent.save()
+        return redirect('user_login:thanks')
+    context = {
+        'rent': form
+    }
+    return render(request, 'rentflat.html', context)
+
+def thanksview(request):
+    return render(request, 'thanks.html')
+
+def resident_view(request):
+    usr = Account.objects.filter().order_by('email')
     
+    return render(request, 'resident.html', {'usr':usr})
+
+    
+    
+        
 def registration_view(request):
     context = {}
     form = RegistrationForm(request.POST)

@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
-from user_login.models import Account, News
+from user_login.models import Account, News, BuyRent
 from django.contrib.auth import authenticate
 
 class RegistrationForm(UserCreationForm):
@@ -36,6 +36,23 @@ class LoginForm(forms.ModelForm):
                 raise forms.ValidationError("Invalid Data")
 
 
+class BuyForm(forms.ModelForm):
+    mobile_no = forms.IntegerField(max_value=10000000000, )
+    
+    class Meta:
+        model = BuyRent
+        fields = ('email', 'username', 'first_name', 'last_name', 'mobile_no', 'flat_type', 'cleaning_house', 'furnished', 'emi' )
+        
+        
+class RentForm(forms.ModelForm):
+    mobile_no = forms.IntegerField(max_value=10000000000, )
+    
+    class Meta:
+        model = BuyRent
+        fields = ('email', 'username', 'first_name', 'last_name', 'mobile_no', 'flat_type', 'pool', 'gym', 'creche', 'cleaning_house', 'furnished', 'no_of_members' )
+    
+    
+        
 class NewsForm(forms.ModelForm):
 
     class Meta:
