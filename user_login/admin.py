@@ -16,7 +16,7 @@ admin.site.register(Account, AccountAdmin)
 
 # for viewing trhe posts
 class NewsAdmin(admin.ModelAdmin):
-    list_display = ('title', 'status','created_on')
+    list_display = ('title', 'author', 'created_on')
     list_filter = ("status",)
     search_fields = ['title', 'content']
     # prepopulated_fields = {'slug': ('title',)}

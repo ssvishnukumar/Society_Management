@@ -27,6 +27,7 @@
        {% csrf_token %} <!-- # its an encryption token.-->
     
                 <div class="mt-3 container mt-4" >
+                    {% comment %} {{ rent.as_p }} {% endcomment %}
                     {% for field in rent %}
                     <p>
                         <small>{{field.label_tag}} </small>

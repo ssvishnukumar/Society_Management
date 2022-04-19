@@ -41,12 +41,16 @@ class BuyForm(forms.ModelForm):
     
     class Meta:
         model = BuyRent
-        fields = ('email', 'username', 'first_name', 'last_name', 'mobile_no', 'flat_type', 'cleaning_house', 'furnished', 'emi' )
+        fields = ('email', 'username', 'first_name', 'last_name', 'mobile_no', 'flat_type','furnished' )
         
         
 class RentForm(forms.ModelForm):
     mobile_no = forms.IntegerField(max_value=10000000000, )
-    
+    pool = forms.BooleanField(required=False)
+    gym = forms.BooleanField(required=False)
+    creche = forms.BooleanField(required=False)
+    pool = forms.BooleanField(required=False)
+
     class Meta:
         model = BuyRent
         fields = ('email', 'username', 'first_name', 'last_name', 'mobile_no', 'flat_type', 'pool', 'gym', 'creche', 'cleaning_house', 'furnished', 'no_of_members' )

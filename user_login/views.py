@@ -1,4 +1,3 @@
-import pdb
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate, get_user_model  # with the help of this we can authenticate the users and then we can allow them to proceed further.
 from django.db import IntegrityError
@@ -57,8 +56,13 @@ def newsadd(request):
 
 def dashboard_view(request):
     obj = News.objects.filter(status=1).order_by('-created_on')[:10]
-
     return render(request,'dashboard.html', {'news': obj})
+    # email = request.POST.get('email')
+    # password = request.POST.get('password')
+    # user = authenticate(request,email=email, password=password)
+    # if user is not None:
+    #     return redirect('/user_login/user_dashboard')
+        
 
 def user_dashboard_view(request):
     obj = News.objects.filter(status=1).order_by('-created_on')[:10]
@@ -109,10 +113,27 @@ def rentview(request):
         rent.last_name = request.POST['last_name']
         rent.mobile_no = request.POST['mobile_no']
         rent.flat_type = request.POST['flat_type']
-        rent.pool = request.POST['pool']
-        rent.gym = request.POST['gym']
-        rent.creche = request.POST['creche']
-        rent.cleaning_house = request.POST['cleaning_house']
+        rent.pool = request.POST.get('pool')
+        rent.gym = request.POST.get('gym')
+        rent.creche = request.POST.get('creche')
+        rent.cleaning_house = request.POST.get('cleaning_house')
+        if rent.pool == 'on':
+            rent.pool = True
+        else:
+            rent.pool = False
+        if rent.gym == 'on':
+            rent.gym = True 
+        else:
+            rent.gym = False
+        if rent.creche == 'on':
+            rent.creche = True 
+        else:
+            rent.creche = False
+        if rent.cleaning_house == 'on':
+            rent.cleaning_house = True
+        else:
+            rent.cleaning_house = False
+            
         rent.furnished = request.POST['furnished']
         rent.no_of_members = request.POST['no_of_members']
         rent.rent_flat = True
@@ -128,8 +149,7 @@ def thanksview(request):
 
 def resident_view(request):
     usr = Account.objects.filter().order_by('email')
-    
-    return render(request, 'resident.html', {'usr':usr})
+    return render(request, 'resident.html', {'resident':usr})
 
     
     

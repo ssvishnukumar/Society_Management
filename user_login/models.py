@@ -146,5 +146,5 @@ class BuyRent(models.Model):
     
     no_of_members = models.IntegerField(default=1)
 
-    emi = models.BooleanField(default=False)
+    # emi = models.BooleanField(default=False)
     

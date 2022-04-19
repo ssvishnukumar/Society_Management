@@ -4,6 +4,8 @@
 {% block title %}Register{% endblock %}
 {% block content %}
 {% block css %}
+
+{% endblock css %}
 <br>
 <center>
     <div class="shadow-lg p-4 mb-auto bg-body" 
@@ -18,44 +20,71 @@
                 
 <h1 style="font-weight:bold;">REGISTER</h1>
 <br>
-<!--POST and GET in django-->
 
-<!--POST-->
-<!--Django's home form is returned using the POST method, -->
-<!--in which the browser bundles up the form data, encodes it for transmission, -->
-<!--sends it to the server, and then receives back its response. -->
-
-<!--GET , by contrast, bundles the submitted data into a string, and uses this to compose a URL.-->
-<div class="form-group" style="background:#ffd381; border-radius:2rem; padding:2.5rem;" >
-<form method="POST"> <!-- here we are specifying the method for the button we used below.-->
+<div class="form-group" style="background:#ffd381; border-radius:2rem; padding:2.5rem; " >
+<form method="POST"> 
    {% csrf_token %} <!-- # its an encryption token.-->
+   <div class="mt-3 container mt-4" >
 
-   <div class="mb-3" >
-    {% for field in registration_form %}
+   <div class="mb-3">
+    {% comment %} {% for field in registration_form %}
         <p>
             <small>{{field.label_tag}} </small><br>
             {{field}}<br>
 
-<!--            {% if field.help_text %}-->
-<!--            <small style="color: grey;">{{field.help_text}}</small>-->
-<!--            {% endif %}-->
-
-<!--            if we do a POST request it checks if the form is valid if the form is not valid and it will still add the form to the context-->
-<!--            In that point if the form is invalid its going to have errors...so we are looping through the errors and display the errors -->
         </p>
-        {% endfor %}
-        </div>
+        {% endfor %} {% endcomment %}
+        
+          <small><label for="id_email">Email</label> </small><br>
+          <input  type="email" name="email" maxlength="50" autofocus required id="id_email" placeholder="Enter a valid email" style="width:80%; border-radius:2rem;" class='form-control'><br>
 
-    {% comment %} <button class="btn btn-primary">Register</button> {% endcomment %}
-    <button class="btn btn-warning" style='border: 3px #000000 solid; border-radius:2rem; background:#fff'>Register</button>
+
+          <small><label for="id_username">Username</label> </small><br>
+          <input type="text" name="username" maxlength="200" required id="id_username" placeholder="Enter username" style="width:80%; border-radius:2rem;" class='form-control'><br>
+
+
+      
+          <small><label for="id_first_name">First name</label> </small><br>
+          <input type="text" name="first_name" maxlength="100" required id="id_first_name" placeholder='Enter FirstName' style="width:80%; border-radius:2rem;" class='form-control'><br>
+
+      
+
+          <small><label for="id_last_name">Last name</label> </small><br>
+          <input type="text" name="last_name" maxlength="100" required id="id_last_name" placeholder='Enter LastName' style="width:80%; border-radius:2rem;" class='form-control'><br>
+
+
+          <small><label for="id_mobile_no">Mobile no</label> </small><br>
+          <input type="number" name="mobile_no" max="10000000000" required id="id_mobile_no" placeholder='Enter Mobile Number' style="width:80%; border-radius:2rem;" class='form-control'><br>
+
+
+          <small><label for="id_tower_no">Tower no</label> </small><br>
+          <input type="number" name="tower_no" max="10000" required id="id_tower_no" placeholder='Enter Tower Number' style="width:80%; border-radius:2rem;" class='form-control'><br>
+
+
+          <small><label for="id_flat_no">Flat no</label> </small><br>
+          <input type="number" name="flat_no" max="10000" required id="id_flat_no" placeholder='Enter Flat Number' style="width:80%; border-radius:2rem;" class='form-control'><br>
+
+
+          <small><label for="id_password1">Password</label> </small><br>
+          <input type="password" name="password1" autocomplete="new-password" placeholder='Create Password' required id="id_password1" style="width:80%; border-radius:2rem;" class='form-control'><br>
+
+
+          <small><label for="id_password2">Confirm Password</label> </small><br>
+          <input type="password" name="password2" autocomplete="new-password" placeholder='Confirm Password' required id="id_password2" style="width:80%; border-radius:2rem;" class='form-control'><br>
+
+
 
     </div>
+    {% comment %} <button class="btn btn-primary">Register</button> {% endcomment %}
+    <button class="btn btn-warning" style='border: 3px #000000 solid; border-radius:2rem; background:#fff'>Register</button>
+      </div>
 </form>
 </div>
+</div>
 </center>
+
 <br>
 <br>
-{% endblock %}
 {% endblock %}
 
 

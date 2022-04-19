@@ -21,7 +21,7 @@
 
     body {
     color: white;
-    background: #ffc35a;
+    background: #ffebb8;
     
     {% comment %} font-family: 'Roboto', sans-serif; {% endcomment %}
     font-family: 'Poppins'; font-size: 20px;
@@ -268,7 +268,7 @@
 
 .card-block{
   width:300px; height:300px;   border-radius:2rem; padding: 1.5rem; 
-            background: rgba(255, 255, 255, 0.3); border: 1px solid rgba(255, 255, 255, 0.7);  
+            background: rgba(255, 255, 255, 0.6); border: 1px solid rgba(255, 255, 255, 0.7);  
 }
     {% endblock %}
 </head>
@@ -473,14 +473,16 @@
     <br>
     {% endfor %}
 </div> {% endcomment %}
-<button href="{% url 'user_login:dashboard' %}">new</button>
 
 {% else %}
 
 <h1>
   <br>
   <medium>
-    <a style="margin-left:-70px;">Recent News: </a><button  style='border-radius:2rem ; border:6px solid #a88a53; background-color:#a88a53;  font-size: 30px;' ><a style='color:#fff; text-decoration:none; ' href="{% url 'user_login:news_add' %}">Add News</a></button>
+    <a style="margin-left:-70px;">Recent News: </a>
+    {% if user.is_admin %}
+    <button  style='border-radius:2rem ; border:6px solid #a88a53; background-color:#a88a53;  font-size: 30px;' ><a style='color:#fff; text-decoration:none; ' href="{% url 'user_login:news_add' %}">Add News</a></button>
+    {% endif %}
 </medium>
 </h1>
 
