@@ -121,14 +121,17 @@ def rentview(request):
             rent.pool = True
         else:
             rent.pool = False
+            
         if rent.gym == 'on':
             rent.gym = True 
         else:
             rent.gym = False
+            
         if rent.creche == 'on':
             rent.creche = True 
         else:
             rent.creche = False
+            
         if rent.cleaning_house == 'on':
             rent.cleaning_house = True
         else:
@@ -148,11 +151,9 @@ def thanksview(request):
     return render(request, 'thanks.html')
 
 def resident_view(request):
-    usr = Account.objects.filter().order_by('email')
+    usr = Account.objects.filter().order_by('-date_joined')
     return render(request, 'resident.html', {'resident':usr})
 
-    
-    
         
 def registration_view(request):
     context = {}

@@ -358,7 +358,7 @@
   </div> {% endcomment %}
   {% for nws in news %}
   <div class="col-12 col-sm-6 col-md-4 col-lg-2" style="margin-left:60px;  ">
-    <div class="card card-block" style="padding:#rem;"><strong style="text-align:#;  text-transform:uppercase; ">{{ nws.title|truncatewords:"2" }} | {{nws.author.username|truncatewords:"2"}}</strong> {{ nws.content|slice:":150"|capfirst }}</div>
+    <div class="card card-block" style="padding:#rem;"><strong style="text-align:#;  text-transform:uppercase; ">{{ nws.title|truncatewords:"2"|slice:':20' }} | {{nws.author.username|truncatewords:"1"}}</strong> {{ nws.content|capfirst|truncatechars:"155" }}</div>
   </div >
   {% endfor %}
   
@@ -435,7 +435,7 @@
   </h1>
 
   
-<div class="container my-8"style='margin-left:-100px; width:70rem; height: 19rem; padding: 0.5rem; bottom: 0.5rem;'>
+<div class="container my-8"style='margin-left:-100px; width:72.5rem; height: 19rem; padding-top:1rem; '>
 
   <!--Slides-->
   <div class="carousel-inner"  role="listbox">
@@ -596,7 +596,7 @@
                 <center>
                 <ul class="list-unstyled mb-4" style='margin-left: 25%;'  >
                   <li class="mb-1">
-                    <a href="#!" style="color: #4f4f4f;">Resident List</a>
+                    <a href="{% url 'user_login:resident_list' %}" style="color: #4f4f4f;">Resident List</a>
                   </li>
                   <li class="mb-1">
                     <a href="#!" style="color: #4f4f4f;">Emergency Number</a>

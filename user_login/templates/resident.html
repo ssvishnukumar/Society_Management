@@ -1,1 +1,50 @@
-{% for i in usr %}\
+{% extends 'base.html' %}
+{% block title %}Resident List{% endblock %}
+{% block css %}
+h1{
+    font-size:30px;
+}
+
+{% endblock %} 
+{% block content %}
+
+<center>
+<div class='back-color' style='background-color:#fdd281; padding:2rem; border-radius:2rem; margin-top:20px;'>
+<br>
+<h1 style="font-weight:bold; border: 2px solid #fdd281; border-radius:2rem; width:30%; background-color: #fff; padding: 0.5rem;">Resident List</h1>
+<br>
+
+
+
+<div class="container" style='background-color: #fdd281; padding: 2rem; border-radius:2rem;'>
+<div class="row">
+    <div class="col-md-12" style="padding:1rem; padding:2rem; border-radius:2rem; background-color: #fff;">
+        <table class="table" >
+            <tr class="table-header "style=' text-align:center; background-color: #f0f0f0; border-radius:20px;'>
+                <th class="cell" >ID No.</th>
+                <th class="cell" >Name</th>
+                <th class="cell" >Email ID</th>
+                <th class="cell" >Mobile Number</th>
+                <th class="cell" >Tower Number</th>
+                <th class="cell" >Flat Number</th>
+            </tr>
+
+        {% for resi in resident%}
+            <tr  class="active" style='text-align: center; '>
+                <td style='border:none;'>{{resi.id}}</td>
+                <td style='border:none;'>{{resi.username}}</td>
+                <td style='border:none;'>{{resi.email}}</td>
+                <td style='border:none;'>{{resi.mobile_no}}</td>
+                <td style='border:none;'>{{resi.tower_no}}</td>
+                <td style='border:none;'>{{resi.flat_no}}</td>
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
+</div>
+</div>
+
+</div>
+</center>
+
+{% endblock %}

@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% block title %}
-Add Post
+Add News
 {% endblock %}
 
 {% block content %}
 
 {% if user.is_authenticated %}
 <br>
-<h1>Add Post</h1>
+<h1>Add NEWS</h1>
 <!--POST and GET in django-->
 
 <!--POST-->
@@ -21,7 +21,7 @@ Add Post
     {% csrf_token %}
     <div class="container mt-4">
     {{ form.as_p }}
-    <button class="btn btn-primary">Post</button>
+    <button class="btn btn-primary">Post NEWS</button>
     </div>
     </form>
     <br>

@@ -4,7 +4,7 @@ from django.contrib.auth import views as auth_views
 
 from .views import (
     logout_view, login_view, registration_view, otp_view, user_dashboard_view, dashboard_view,
-newsadd, complaintadd, buyview, rentview, thanksview
+newsadd, complaintadd, buyview, rentview, thanksview, resident_view
 )
 
 
@@ -40,12 +40,13 @@ urlpatterns = [
     # path('<int:pk>/', NewsDetail.as_view(), name='news_detail'),
     # path('delete/<int:author_id>/<int:id>/', NewsDelete.as_view(), name='news_delete'),
     
-    
     path('complaint/add/', complaintadd, name='complaint_add'),
     
     path('buyflat/', buyview, name='buy_flat'), 
     path('rentflat/', rentview, name='rent_flat'),
-    path('thanks/', thanksview, name='thanks')
+    path('thanks/', thanksview, name='thanks'), 
+    
+    path('resident_list/', resident_view, name='resident_list'),
     
     ]
 
