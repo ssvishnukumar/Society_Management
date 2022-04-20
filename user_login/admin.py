@@ -23,3 +23,5 @@ class NewsAdmin(admin.ModelAdmin):
 
 admin.site.register(News, NewsAdmin)
 admin.site.register(BuyRent)
+admin.site.register(Visitors)
+admin.site.register(ComplaintSuggestion)

@@ -153,7 +153,7 @@
 
   cursor: default;
   height: 20rem;
-  right: 650px;
+  right: 1075px;
   top: 120%  ;
 
   {% comment %} margin-bottom:100px; {% endcomment %}
@@ -165,7 +165,7 @@
   text-align: center;
   {% comment %} top: 0; {% endcomment %}
   {% comment %} margin-top:60px; {% endcomment %}
-  width: 20%;
+  width: 30%;
   z-index: 1;
   {% comment %} bottom:0; {% endcomment %}
 }
@@ -178,7 +178,7 @@
 
   cursor: default;
   height: 20rem;
-  right: 1075px;
+  right: 650px;
   top: 120% ;
   border-radius: 3rem;;
   overflow-x: hidden;
@@ -187,7 +187,7 @@
   text-align: center;
   {% comment %} top: 0; {% endcomment %}
   {% comment %} margin-top:60px; {% endcomment %}
-  width: 30%;
+  width: 20%;
   z-index: 1;
   {% comment %} bottom:0; {% endcomment %}
 }
@@ -270,10 +270,19 @@
   width:300px; height:300px;   border-radius:2rem; padding: 1.5rem; 
             background: rgba(255, 255, 255, 0.6); border: 1px solid rgba(255, 255, 255, 0.7);  
 }
+
+@media screen and (min-width: 900px) 
+.fixing{
+  display: flex;
+  flex-direction: column;
+}
+
     {% endblock %}
 </head>
 {% block content %}
 
+{% if user.is_authenticated %}
+<div class='fixing' >
 
 <section id='sidebar'>
     {% comment %} <div class="other"> {% endcomment %}
@@ -311,11 +320,11 @@
                       {% comment %} <h5 class="mb-3" style="letter-spacing: 2px; color: #7f4722;">shopping online</h5> {% endcomment %}
                       <ul class="list-unstyled mb-4">
                         <li class="mb-1">
-                          <button href="#!" class="btn btn-warning" style='border: 0px #fff solid; border-radius:1rem; background:#e95530; color:#000; margin-bottom:10px; padding: 1.2rem; width: 200px;'>COMPLAINT</button>
+                          <a href="{% url 'user_login:complaint_add' %}"><button class="btn btn-warning" style='border: 0px #fff solid; border-radius:1rem; background:#e95530; color:#000; margin-bottom:10px; padding: 1.2rem; width: 200px;'>COMPLAINT</button></a>
                           {% comment %} <a  style="color: #000;">POOL</a> {% endcomment %}
                         </li>
                         <li class="mb-1">
-                          <button href="#!" class="btn btn-warning" style='border: 0px #fff solid; border-radius:1rem; background:#48d135; color:#000; margin-bottom:10px; padding:1.2rem; width:200px;'>SUGGESTION</button>
+                          <a href="{% url 'user_login:suggestion_add' %}"><button class="btn btn-warning" style='border: 0px #fff solid; border-radius:1rem; background:#48d135; color:#000; margin-bottom:10px; padding: 1.2rem; width: 200px;'>SUGGESTION</button></a>
   
                           {% comment %} <a href="#!" style="color: #000;">GYM</a> {% endcomment %}
                         </li>
@@ -337,16 +346,16 @@
                         {% comment %} <h5 class="mb-3" style="letter-spacing: 2px; color: #7f4722;">shopping online</h5> {% endcomment %}
                         <ul class="list-unstyled mb-4">
                           <li class="mb-1">
-                            <button href="#!" class="btn btn-warning" style='border: 0px #fff solid; border-radius:2rem; background:#fbc35a; color:#000; margin-bottom:20px; padding: 0.7rem; width: 400px;'>Society Charges</button>
+                            <button href="#!" class="btn btn-warning" style='border: 0px #fff solid; border-radius:2rem; background:#fbc35a; color:#000; margin-bottom:20px; padding: 0.5rem; width: 200px;'>Society Charges</button>
                             {% comment %} <a  style="color: #000;">POOL</a> {% endcomment %}
                           </li>
                           <li class="mb-1">
-                            <button href="#!" class="btn btn-warning" style='border: 0px #fff solid; border-radius:2rem; background:#fbc35a; color:#000; margin-bottom:20px; padding:0.7rem; width:400px;'>Utility Payment</button>
+                            <button href="#!" class="btn btn-warning" style='border: 0px #fff solid; border-radius:2rem; background:#fbc35a; color:#000; margin-bottom:20px; padding:0.5rem; width:200px;'>Utility Payment</button>
     
                             {% comment %} <a href="#!" style="color: #000;">GYM</a> {% endcomment %}
                           </li>
                           <li class="mb-1">
-                            <button href="#!" class="btn btn-warning" style='border: 0px #fff solid; border-radius:2rem; background:#fbc35a; color:#000; margin-bottom:20px; padding:0.7rem; width:400px;'>Rent Payment</button>
+                            <button href="#!" class="btn btn-warning" style='border: 0px #fff solid; border-radius:2rem; background:#fbc35a; color:#000; margin-bottom:20px; padding:0.5rem; width:200px;'>Rent Payment</button>
     
                             {% comment %} <a href="#!" style="color: #000;">GYM</a> {% endcomment %}
                           </li>
@@ -363,14 +372,17 @@
   <section id='sidebar_visitors'>
     {% comment %} <div class="other"> {% endcomment %}
       <div style='color:#fff;'>
-        <strong><h2 class="side1" style='color: #000  ; '>Visitors</h2></strong><br>
+        <strong><h2 class="side1" style='color: #000  ; '>Recent Visitors</h2></strong><br>
 
         <ul class="list-unstyled mb-4">
           {% comment %} {% if user.is_active %} {% endcomment %}
+          {% for vis in visitor %}
                       <li class="mb-1">
-                        <button href="#!" class="btn btn-warning" style='border: 0px #fff solid; border-radius:1rem; background:#fbc35a; color:#000; margin-bottom:5px; width:150px;'>{{ user.username}}</button>
+                        <button href="#!" class="btn btn-warning" style='border: 0pxPAYMENT
+                        #fff solid; border-radius:1rem; background:#fbc35a; color:#000; margin-bottom:10px; width:100%; '>{{ vis.name }} | {{vis.email}}</button>
                       </li>
-                      <li class="mb-1">
+                      {% endfor %}
+                      {% comment %} <li class="mb-1">
                         <button href="#!" class="btn btn-warning" style='border: 0px #fff solid; border-radius:1rem; background:#fbc35a; color:#000; margin-bottom:5px; width:150px;'>Visitor 2</button>
                       </li>
                       <li class="mb-1">
@@ -378,7 +390,7 @@
                       </li>
                       <li>
                         <button href="#!" class="btn btn-warning" style='border: 0px #fff solid; border-radius:1rem; background:#fbc35a; color:#000; margin-bottom:5px; width:150px;'>Visitor 4</button>
-                      </li>
+                      </li> {% endcomment %}
                     </ul>
                   </div>
 </section>
@@ -402,7 +414,7 @@
     <br>
     <button class='btn btn-warning' href='#' type="button" >SUGGESTIONS</button> {% endcomment %}
   </section>
-
+</div>
 
 
 
@@ -803,5 +815,9 @@
           <br> Thank You For Visiting.<span style="color:#fbc35a;">!!!</span></p>
     </div>
 </html>
+{% else %}
+      <meta http-equiv="refresh" content="0; url=/user_login/dashboard/"/>
+      {% comment %} The above line meta is to redirect the page to dashboard if the user is not authenticated {% endcomment %}
+{% endif %}
 {% endblock content %}
 

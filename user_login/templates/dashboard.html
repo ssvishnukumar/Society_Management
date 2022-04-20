@@ -256,11 +256,11 @@
                       {% comment %} <h5 class="mb-3" style="letter-spacing: 2px; color: #7f4722;">shopping online</h5> {% endcomment %}
                       <ul class="list-unstyled mb-4">
                         <li class="mb-1">
-                          <button href="#!" class="btn btn-warning" style='border: 0px #fff solid; border-radius:1rem; background:#e95530; color:#000; margin-bottom:10px; padding: 1.2rem; width: 200px;'>COMPLAINT</button>
+                          <a href="{% url 'user_login:complaint_add' %}"><button class="btn btn-warning" style='border: 0px #fff solid; border-radius:1rem; background:#e95530; color:#000; margin-bottom:10px; padding: 1.2rem; width: 200px;'>COMPLAINT</button></a>
                           {% comment %} <a  style="color: #000;">POOL</a> {% endcomment %}
                         </li>
                         <li class="mb-1">
-                          <button href="#!" class="btn btn-warning" style='border: 0px #fff solid; border-radius:1rem; background:#48d135; color:#000; margin-bottom:10px; padding:1.2rem; width:200px;'>SUGGESTION</button>
+                          <a href="{% url 'user_login:suggestion_add' %}"><button class="btn btn-warning" style='border: 0px #fff solid; border-radius:1rem; background:#48d135; color:#000; margin-bottom:10px; padding: 1.2rem; width: 200px;'>SUGGESTION</button></a>
   
                           {% comment %} <a href="#!" style="color: #000;">GYM</a> {% endcomment %}
                         </li>
@@ -629,8 +629,9 @@
     </div>
 </html>
 {% else %}
-    <center><medium><h1><a href="/user_login/user_dashboard/"><button  style="color:#000; border-radius:1rem; margin-top:3rem; font-size:30px; border:0px;">User Dashboard</button></a></h1></medium></center>
-
+    {% comment %} <center><medium><h1><a href="/user_login/user_dashboard/"><button  style="color:#000; border-radius:1rem; margin-top:3rem; font-size:30px; border:0px;">User Dashboard</button></a></h1></medium></center> {% endcomment %}
+    <meta http-equiv="refresh" content="0; url=/user_login/user_dashboard/"/>
+    {% comment %} The above line meta is to redirect the page to user_dashboard if the user is authenticated {% endcomment %}
 {% endif %}
 {% endblock content %}
 

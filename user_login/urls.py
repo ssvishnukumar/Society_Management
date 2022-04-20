@@ -4,7 +4,7 @@ from django.contrib.auth import views as auth_views
 
 from .views import (
     logout_view, login_view, registration_view, otp_view, user_dashboard_view, dashboard_view,
-newsadd, complaintadd, buyview, rentview, thanksview, resident_view
+newsadd, buyview, rentview, thanksview, resident_view, visitors_add, complaint_add, suggestion_add
 )
 
 
@@ -17,12 +17,6 @@ urlpatterns = [
     path('otpverify/', otp_view, name='otp'),
     path("dashboard/", dashboard_view, name="dashboard"),
     path("user_dashboard/", user_dashboard_view, name="user_dashboard"),
-
-
-    # path("password_reset/", auth_views.PasswordResetView.as_view(template_name='password_reset1.html'), name="password_reset"),
-    # path("password_reset_done/", auth_views.PasswordResetDoneView.as_view(template_name='password_reset_done1.html'), name="password_reset_done"),
-    # path("password_reset_confirm/<uidb64>/<token>/", auth_views.PasswordResetConfirmView.as_view(template_name='password_reset_confirm1.html'), name="password_reset_confirm"),
-    # path("password_reset_complete/", auth_views.PasswordResetCompleteView.as_view(template_name='password_reset_complete1.html'), name="password_reset_complete"),
 
     # change password
     path("password_change/done/", auth_views.PasswordChangeDoneView.as_view(template_name='registration/password_change_done.html'), name="password_change_done"),
@@ -40,13 +34,16 @@ urlpatterns = [
     # path('<int:pk>/', NewsDetail.as_view(), name='news_detail'),
     # path('delete/<int:author_id>/<int:id>/', NewsDelete.as_view(), name='news_delete'),
     
-    path('complaint/add/', complaintadd, name='complaint_add'),
+    # path('complaint/add/', complaintadd, name='complaint_add'),
     
     path('buyflat/', buyview, name='buy_flat'), 
     path('rentflat/', rentview, name='rent_flat'),
     path('thanks/', thanksview, name='thanks'), 
     
     path('resident_list/', resident_view, name='resident_list'),
+    path('visitors/add/', visitors_add, name='visitors_add'),
     
+    path('complaint/add/', complaint_add, name='complaint_add'),
+    path('suggestion/add/',suggestion_add, name='suggestion_add'),
     ]
 

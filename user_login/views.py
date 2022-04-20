@@ -11,7 +11,7 @@ from django.core.mail import send_mail
 from django.contrib import messages
 import random
 from django.conf import settings
-from .models import Account, News, BuyRent
+from .models import Account, News, BuyRent, Visitors
 # Account = get_user_model()
 
 @login_required(login_url='/user_login/login/')
@@ -28,6 +28,57 @@ def newsadd(request):
     return render(request,'post/news_add.html',context)
     # render responds by HTTP response of context. Here (i.e) forms
 
+def visitors_add(request):
+    form = VisitorsForm()
+    if request.method=='POST':
+        form = VisitorsForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('/user_login/user_dashboard/')
+    context = {
+        'form':form,
+    }
+    return render(request,'visitors_add.html',context)
+        
+        
+def complaint_add(request):
+    form = ComplaintForm()
+    if request.method=='POST':
+        form = ComplaintForm(request.POST,request.FILES)
+        if form.is_valid():
+            # here by default it will choose Complaint in models...because we have given that default as 0. (i.e) Complaint
+            form.save()
+            return redirect('/user_login/user_dashboard/')
+    context = {
+        'complaints':form,
+    }
+    return render(request,'complaint_add.html',context)
+
+def suggestion_add(request):
+    # form = SuggestionForm()
+    # if request.method=='POST':
+    #     form = SuggestionForm(request.POST,request.FILES)
+    #     if form.is_valid():
+    #         a = ComplaintSuggestion.objects.create()
+    #         a.choose = 1
+    #         a.save()
+    #         form.save()
+    #         return redirect('/user_login/user_dashboard/')
+    form = SuggestionForm()
+    if request.method == 'POST':
+        a = ComplaintSuggestion.objects.create()
+        a.email = request.POST['email']
+        a.name = request.POST['name']
+        a.title = request.POST['title']
+        a.content = request.POST['content']
+        a.choose = 1
+        a.save()
+        return redirect('user_login:user_dashboard')
+    context = {
+        'suggestions':form,
+    }
+    return render(request,'suggestion_add.html',context)
+       
 # class NewsList(ListView):
 #     queryset = News.objects.filter(status=1).order_by('-created_on')
 #     template_name = 'user_login:dashboard.html'
@@ -66,21 +117,10 @@ def dashboard_view(request):
 
 def user_dashboard_view(request):
     obj = News.objects.filter(status=1).order_by('-created_on')[:10]
-    return render(request,'user_dashboard.html', {'news': obj})
     
-@login_required(login_url='/user_login/login/')
-def complaintadd(request):
-    form= ComplaintForm()
-    if request.method=='POST':
-        form= ComplaintForm(request.POST,request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('/user_login/dashboard/')
-    context={
-        'form':form,
-    }
-    return render(request,'post/complaint_add.html',context)
-    # render responds by HTTP response of context. Here (i.e) forms
+    visitor = Visitors.objects.filter().order_by('-date_joined')[:4]
+
+    return render(request,'user_dashboard.html', {'news': obj, 'visitor':visitor})
     
 def buyview(request):
     form = BuyForm()
@@ -113,10 +153,13 @@ def rentview(request):
         rent.last_name = request.POST['last_name']
         rent.mobile_no = request.POST['mobile_no']
         rent.flat_type = request.POST['flat_type']
+        
+        #Use the MultiValueDict's get method. This is also present on standard dicts and is a way to fetch a value while providing a default if it does not exist.
         rent.pool = request.POST.get('pool')
         rent.gym = request.POST.get('gym')
         rent.creche = request.POST.get('creche')
         rent.cleaning_house = request.POST.get('cleaning_house')
+        
         if rent.pool == 'on':
             rent.pool = True
         else:

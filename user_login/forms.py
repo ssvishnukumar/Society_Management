@@ -1,6 +1,7 @@
+from xml.parsers.expat import model
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
-from user_login.models import Account, News, BuyRent
+from user_login.models import Account, News, BuyRent, Visitors, ComplaintSuggestion
 from django.contrib.auth import authenticate
 
 class RegistrationForm(UserCreationForm):
@@ -85,55 +86,19 @@ class ComplaintForm(forms.ModelForm):
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# from .models import Profile
-#
-# class RegisterForm(UserCreationForm):
-#     email= forms.EmailField(max_length=100, required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Your Email'}))
-#     # username= forms.CharField(max_length=100, required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter username'}))
-#     mobile_no= forms.IntegerField(max_value=10000000000, required=True,widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Your Mobile No.'}))
-#     flat_no= forms.CharField(max_length=20, required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Your Flat No.'}))
-#     tower_no= forms.CharField(max_length=20, required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Your Tower No.'}))
-#     # password1= forms.CharField(required=True,widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Create Password'}))
-#     # password2= forms.CharField(required=True,widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Enter Your Password Again.'}))
-#
-#     class Meta:
-#         model = User
-#         fields = ('email','username', 'mobile_no', 'flat_no', 'tower_no', 'password1','password2')
-#
-#     def __init__(self, *args, **kwargs):
-#         super(RegisterForm, self).__init__(*args, **kwargs)
-#
-#         self.fields['username'].widget.attrs['class']='form-control'
-#         self.fields['password1'].widget.attrs['class']='form-control'
-#         self.fields['password2'].widget.attrs['class']='form-control'
+class VisitorsForm(forms.ModelForm):
+    mobile_no = forms.IntegerField(max_value=10000000000, )
+    class Meta:
+        model = Visitors
+        fields = ('name', 'email', 'mobile_no')
+             
+        
+class SuggestionForm(forms.ModelForm):
+    class Meta:
+        model = ComplaintSuggestion
+        fields = ('name', 'email', 'title', 'content')
+        
+class ComplaintForm(forms.ModelForm):
+    class Meta:
+        model = ComplaintSuggestion
+        fields = ('name', 'email', 'title', 'content')

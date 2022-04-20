@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import BaseUserManager, PermissionsMixin, AbstractUser
 from django.urls import reverse
 from more_itertools import first
+from pyparsing import Char
 
 
 class MyAccountManager(BaseUserManager): # This function is created after the Account class is created.
@@ -100,6 +101,8 @@ class News(models.Model):
     def get_absolute_url(self):
         return reverse('user_login:user_dashboard')
     
+    
+    
 BHK = (
     (1,'1BHK'),
     (2,'2BHK'),
@@ -110,22 +113,7 @@ FURNISHED = (
     (0, 'Not Furnished'),
     (1, 'FURNISHED'),
 )
-class BuyRent(models.Model):
-    # username = models.CharField(max_length=50)
-    # first_name = models.CharField(max_length=100)
-    # last_name = models.CharField(max_length=100)
-    # email = models.EmailField(unique=False)
-    # mobile_no = models.CharField(max_length=14)
-    # buy_flat = models.BooleanField(default=False)
-    # rent_flat = models.BooleanField(default=False)
-    # furnished = models.CharField(max_length=10)
-    # pool = models.CharField(max_length=20)
-    # gym = models.CharField(max_length=20)
-    # creche = models.CharField(max_length=20)
-    # no_of_members = models.IntegerField(default=0)
-    # flat_type = models.CharField(max_length=20)
-    
-    
+class BuyRent(models.Model):    
     email = models.EmailField(verbose_name='email', max_length=50, unique=False)
     username = models.CharField(max_length=200, unique=False)
     first_name = models.CharField(max_length=100)
@@ -147,4 +135,26 @@ class BuyRent(models.Model):
     no_of_members = models.IntegerField(default=1)
 
     # emi = models.BooleanField(default=False)
+    
+class Visitors(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField(max_length=100)
+    mobile_no = models.CharField(max_length=15)
+    date_joined = models.DateTimeField(verbose_name='date_joined', auto_now_add=True)
+
+
+choose = (
+    (0, 'Complaint'),
+    (1, 'Suggestion'),
+)
+class ComplaintSuggestion(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField(max_length=100)
+    choose = models.IntegerField(choices=choose ,default=0)
+    
+    title = models.CharField(max_length=100)
+    content = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+
+
     
