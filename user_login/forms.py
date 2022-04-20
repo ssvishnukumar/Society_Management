@@ -54,7 +54,7 @@ class RentForm(forms.ModelForm):
 
     class Meta:
         model = BuyRent
-        fields = ('email', 'username', 'first_name', 'last_name', 'mobile_no', 'flat_type', 'pool', 'gym', 'creche', 'cleaning_house', 'furnished', 'no_of_members' )
+        fields = ('email', 'username', 'first_name', 'last_name', 'mobile_no', 'flat_type', 'furnished', 'no_of_members','pool', 'gym', 'creche', 'cleaning_house', )
     
     
         
