@@ -29,14 +29,12 @@ class MyAccountManager(BaseUserManager): # This function is created after the Ac
             username=username,
             password=password,
         )
+        
         user.is_admin =True
         user.is_staff =True
         user.is_superuser =True
         user.save(using=self._db)
         return user
-
-
-
 
 
 class Account(AbstractUser, PermissionsMixin):
@@ -70,8 +68,8 @@ class Account(AbstractUser, PermissionsMixin):
     def __str__(self):
         return self.username + ' | ' + self.email
 
-    def has_perm(self, perm, obj=None):
-        return self.is_admin
+    # def has_perm(self, perm, obj=None):
+    #     return self.is_admin
 
     def has_module_perm(self, app_label):
         return True
@@ -86,7 +84,7 @@ STATUS = (
 class News(models.Model):
     title = models.CharField(max_length=200, unique=True)
     # slug = models.SlugField(max_length=200, unique=True)
-    author = models.ForeignKey(Account, on_delete= models.CASCADE,related_name='news_posts')
+    author = models.ForeignKey(Account, on_delete= models.CASCADE)
     updated_on = models.DateTimeField(auto_now= True)
     content = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
