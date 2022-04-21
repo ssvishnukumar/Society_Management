@@ -49,6 +49,7 @@ def complaint_add(request):
             # here by default it will choose Complaint in models...because we have given that default as 0. (i.e) Complaint
             form.save()
             return redirect('/user_login/user_dashboard/')
+        
     context = {
         'complaints':form,
     }
