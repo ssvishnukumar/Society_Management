@@ -112,9 +112,7 @@ def dashboard_view(request):
 
 def user_dashboard_view(request):
     obj = News.objects.filter(status=1).order_by('-created_on')[:10]
-    
     visitor = Visitors.objects.filter().order_by('-date_joined')[:4]
-
     return render(request,'user_dashboard.html', {'news': obj, 'visitor':visitor})
     
 def buyview(request):
