@@ -108,11 +108,6 @@ def suggestion_add(request):
 def dashboard_view(request):
     obj = News.objects.filter(status=1).order_by('-created_on')[:10]
     return render(request,'dashboard.html', {'news': obj})
-    # email = request.POST.get('email')
-    # password = request.POST.get('password')
-    # user = authenticate(request,email=email, password=password)
-    # if user is not None:
-    #     return redirect('/user_login/user_dashboard')
         
 
 def user_dashboard_view(request):
@@ -314,14 +309,13 @@ def otp_view(request):
             # usr = Account.objects.all()
             user.is_verified = True
             # pdb.set_trace()
-            # pdb.set_trace()
             user.save()
 
             # usr.save()
             return redirect('user_login:login')
         else:
             messages.error(request, "OTP does not match. recheck or click to resend otp")
-            return render(request, 'otp.html', {'error':{"Password doesn't match"}})
+        return render(request, 'otp.html', {'error':{"Password doesn't match"}})
     return render(request, 'otp.html')
 
 

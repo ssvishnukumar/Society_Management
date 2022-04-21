@@ -6,17 +6,58 @@ Entry Visitor
 {% block content %}
 
 {% comment %} {% if user.is_authenticated %} {% endcomment %}
-<br>
-<h1>Visitor Entry</h1>
+<center>
+    <br>
+    <div class="shadow-lg p-4 mb-auto bg-body" 
+                style='
+                    width: 600px;  
+                    margin-top:20px; 
+                    height:auto;
+                    bottom:20px;
+                    border-radius:2rem;
+                    
+                    '>
+    <br>
+    <h1 style="font-weight:bold;">VISITOR ENTRY</h1>
+    <br>
 
-
+<div class="form-group" style="background:#ffd381; border-radius:2rem; padding:0.5rem;">
 <form method="POST">
     {% csrf_token %}
-    <div class="container mt-4">
+    {% comment %} <div class="container mt-4">
         {{ form.as_p }}
         <button class="btn btn-primary">Save</button>
+    </div> {% endcomment %}
+    <div class="container mt-4">
+        <p>
+    <label for="id_name">Name</label><br>
+    <input type="text" name="name" maxlength="100" required="" id="id_name" style="width:90%; border-radius:2rem;" class="form-control" placeholder="Enter your Name">
+    
+    
+  </p>
+
+  
+  <p>
+    <label for="id_email">Email</label><br>
+    <input type="email" name="email" maxlength="100" required="" id="id_email" style="width:90%; border-radius:2rem;" class="form-control" placeholder="Enter your email address">
+    
+    
+  </p>
+
+  
+  <p>
+    <label for="id_mobile_no">Mobile no</label><br>
+    <input type="number" name="mobile_no" max="10000000000" required="" id="id_mobile_no" style="width:90%; border-radius:2rem;" class="form-control" placeholder="Enter Mobile Number">
+    
+    
+      
+    
+  </p>
+
+        <br>
+        <button class="btn btn-warning" style="border: 3px #000000 solid; border-radius:2rem; background:#fff">Save</button>
     </div>
 </form>
     <br>
-    <br>
+
 {% endblock %}

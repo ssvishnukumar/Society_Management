@@ -5,22 +5,42 @@
 
 {% block css %}
 {% block content %}
+<center>
+    <br>
+    <div class="shadow-lg p-4 mb-auto bg-body" 
+                style='
+                    width: 600px;  
+                    margin-top:50px; 
+                    height:420px;
+                    {% comment %} border: 1px solid ; {% endcomment %}
+                    border-radius:2rem;
+                    '>
+    <br>
+    <h1 style="font-weight:bold;">Verify OTP</h1>
+    <br>
+
+    <div class="form-group" style="background:#ffd381; border-radius:2rem; padding:0.5rem;">
 
 <form action='{% url "user_login:otp" %}' method="POST">
      {% csrf_token %}
-    <div class="container mt-5">
-   <div class="mb-3 col-sm-4">
-            <label for="otp" class="form-label" style='color: #000; font-weight: medium;' >Enter the OTP</label>
+   <div class="mt-3 container-mt-4">
+            {% comment %} <label for="otp" class="form-label" >Enter OTP</label> {% endcomment %}
             <br>
-            <input type="password" class="form-control " id="otp" name="otp">
+            <input type="password" class="form-control" placeholder="Enter your OTP here" style="width:80%; border-radius:2rem;" id="otp" name="otp">
 
 <br>
 
-<button type="submit" class="btn btn-primary">Verify OTP</button>
-   </div>
-    </div>
-
+<button type="submit" class="btn btn-warning" style='border: 3px #000000 solid; border-radius:2rem; background:#fff'>Verify OTP</button>
 </form>
+
+   </div>
+   <br>
+   
+   </center>
+   <br>
+    </div>
+<br>
+
 
 {% endblock %}
 {% endblock %}
