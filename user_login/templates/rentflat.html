@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 {% block title %}Buy Flat{% endblock %}
 {% block content %}
+
 {% block css %}
+
 {% endblock css %}
   
 <center>
@@ -85,28 +87,29 @@
                         <label for="id_no_of_members">No of members</label> 
                         <a style="width:50%; border-radius:2rem;"> <input type="number" name="no_of_members" value="1" required id="id_no_of_members" style="width:90%; border-radius:2rem;" class='form-control'> </a>
                     </p>
+<br>
+<div style='text-align:left; margin-left:8%;'>
 
-
-                    <p>
+                    {% comment %} <p> {% endcomment %}
                         {% comment %} <small><label for="id_pool">Pool:</label> </small>  {% endcomment %}
                         <a style="width:50%; border-radius:2rem;"> <input type="checkbox" name="pool" id="id_pool" >  POOL</a><br>
             
-                    </p>
+                    {% comment %} </p> {% endcomment %}
                     
-                    <p>
+                    {% comment %} <p> {% endcomment %}
                         <a style="width:50%; border-radius:2rem;"> <input type="checkbox" name="gym" id="id_gym" >  GYM</a><br>
             
-                    </p>
+                    {% comment %} </p> {% endcomment %}
                     
-                    <p>
+                    {% comment %} <p> {% endcomment %}
                         <a style="width:50%; border-radius:2rem;"> <input type="checkbox" name="creche" id="id_creche" >  CRECHE</a><br>
             
-                    </p>
+                    {% comment %} </p> {% endcomment %}
                     
-                    <p>
+                    {% comment %} <p> {% endcomment %}
                         <a style="width:50%; border-radius:2rem;"> <input type="checkbox" name="cleaning_house" id="id_cleaning_house" > CLEANING HOUSE</a><br>
-            
-                    </p>
+</div>
+                    {% comment %} </p> {% endcomment %}
 
                     {% comment %} {% for field in rent %}
                     <p>
@@ -125,4 +128,5 @@
 </center>
 <br>
 <br>
+
 {% endblock %}

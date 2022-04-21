@@ -435,7 +435,8 @@
 
   {% for nws in news %}
     <div class="col-12 col-sm-6 col-md-4 col-lg-2" style="margin-left:60px;  ">
-      <div class="card card-block" style="padding:#rem;"><strong style="text-align:#;  text-transform:uppercase; ">{{ nws.title|truncatewords:"2"|slice:':20' }} | {{nws.author.username|truncatewords:"1"}}</strong> {{ nws.content|capfirst|truncatechars:"155" }}</div>
+      <div class="card card-block" style="padding:#rem;"><strong style="text-align:#;  text-transform:uppercase; ">{{ nws.title|truncatewords:"2"|slice:':20' }} | {{nws.author.username|truncatewords:"1"}}</strong> {{ nws.content|capfirst|truncatechars:"155" }}
+      </div>
     </div >
   {% endfor %}
 
