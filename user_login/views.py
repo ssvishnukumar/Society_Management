@@ -237,8 +237,9 @@ def registration_view(request):
             # print(user)
             user_otp= random.randint(1000,9999)
 
-            request.session['email'] = email
+            request.session['email'] = email 
             request.session['otp'] = user_otp
+ 
             mess= f"Hello {user.email}, \n Your OTP is {user_otp} \n Thank You"
 
             # print(user_otp)
@@ -304,7 +305,9 @@ def otp_view(request):
         # email = request.session['email']
         # pdb.set_trace()
         if OTP == int(request.POST['otp']):
+            
             user = Account.objects.get(email=request.session['email'])
+
             # usr = Account.objects.all()
             user.is_verified = True
             # pdb.set_trace()
