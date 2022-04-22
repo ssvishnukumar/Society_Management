@@ -81,6 +81,7 @@ STATUS = (
     (0,"Draft"),
     (1,"Publish")
 )
+
 class News(models.Model):
     title = models.CharField(max_length=200, unique=True)
     # slug = models.SlugField(max_length=200, unique=True)
@@ -111,6 +112,7 @@ FURNISHED = (
     (0, 'Not Furnished'),
     (1, 'FURNISHED'),
 )
+
 class BuyRent(models.Model):    
     email = models.EmailField(verbose_name='email', max_length=50, unique=False)
     username = models.CharField(max_length=200, unique=False)

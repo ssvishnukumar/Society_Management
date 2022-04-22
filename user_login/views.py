@@ -40,7 +40,7 @@ def visitors_add(request):
     }
     return render(request,'visitors_add.html',context)
         
-        
+
 def complaint_add(request):
     form = ComplaintForm()
     if request.method=='POST':
