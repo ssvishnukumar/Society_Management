@@ -9,6 +9,7 @@ newsadd, buyview, rentview, thanksview, resident_view, visitors_add, complaint_a
 
 
 app_name = 'user_login'
+
 urlpatterns = [
     path('register/', registration_view, name='register' ),
     path('logout/', logout_view, name='logout'),

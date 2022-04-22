@@ -12,13 +12,13 @@ from django.contrib import messages
 import random
 from django.conf import settings
 from .models import Account, News, BuyRent, Visitors
-# Account = get_user_model()
+
 
 @login_required(login_url='/user_login/login/')
 def newsadd(request):
     form = NewsForm()
     if request.method=='POST':
-        form = NewsForm(request.POST,request.FILES)
+        form = NewsForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('/user_login/user_dashboard/')
@@ -31,7 +31,7 @@ def newsadd(request):
 def visitors_add(request):
     form = VisitorsForm()
     if request.method=='POST':
-        form = VisitorsForm(request.POST,request.FILES)
+        form = VisitorsForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('/user_login/user_dashboard/')
@@ -44,7 +44,7 @@ def visitors_add(request):
 def complaint_add(request):
     form = ComplaintForm()
     if request.method=='POST':
-        form = ComplaintForm(request.POST,request.FILES)
+        form = ComplaintForm(request.POST)
         if form.is_valid():
             # here by default it will choose Complaint in models...because we have given that default as 0. (i.e) Complaint
             form.save()
@@ -56,15 +56,6 @@ def complaint_add(request):
     return render(request,'complaint_add.html',context)
 
 def suggestion_add(request):
-    # form = SuggestionForm()
-    # if request.method=='POST':
-    #     form = SuggestionForm(request.POST,request.FILES)
-    #     if form.is_valid():
-    #         a = ComplaintSuggestion.objects.create()
-    #         a.choose = 1
-    #         a.save()
-    #         form.save()
-    #         return redirect('/user_login/user_dashboard/')
     form = SuggestionForm()
     if request.method == 'POST':
         a = ComplaintSuggestion.objects.create()
@@ -199,12 +190,6 @@ def registration_view(request):
     # print(request.method == "POST")
     try:
         if request.method == "POST":
-            # email = request.POST['email']
-            # phone = request.POST['mobile_no']
-            # flat = request.POST['flat_no']
-            # tower = request.POST['tower_no']
-            # password1 = request.POST['password1']
-            # password2 = request.POST['password2']
             email = request.POST['email']
             username = request.POST['username']
             first_name = request.POST['first_name']
@@ -253,7 +238,7 @@ def registration_view(request):
                     )
 
             return redirect('user_login:otp')
-        else:
+        else: # GET
             form = RegistrationForm()
             context['registration_form'] = form
     except IntegrityError:
@@ -264,7 +249,7 @@ def registration_view(request):
 
 def login_view(request):
     context = {}
-    user = request.user
+    # user = request.user
 
     if request.POST:
         form = LoginForm(request.POST)
@@ -282,7 +267,7 @@ def login_view(request):
     #     # messages.success(request, 'You are already authenticated user.')
     #     return redirect('user_login:dashboard')
 
-    else:
+    else: 
         # here the user is still not attempted to login. (i.e) GET
         form = LoginForm()
     context['login_form'] = form
