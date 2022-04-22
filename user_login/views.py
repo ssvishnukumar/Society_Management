@@ -305,9 +305,7 @@ def otp_view(request):
         # email = request.session['email']
         # pdb.set_trace()
         if OTP == int(request.POST['otp']):
-            
             user = Account.objects.get(email=request.session['email'])
-
             # usr = Account.objects.all()
             user.is_verified = True
             # pdb.set_trace()
