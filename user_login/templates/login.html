@@ -37,13 +37,13 @@
                     <label class="form-label" >Password</label>
                     <input type="password" class="form-control" name="password" required id ='id_password' placeholder="Enter your password" style="width:80%; border-radius:2rem; ">
                   </div>
-                    {% if form.non_field_errors %}
-                        <ul class='form-errors'>
+                    {% comment %} {% if form.non_field_errors %}
+                        <ul class='form-errors'> {% endcomment %}
                             {% for error in form.non_field_errors %}
                                 <li>{{ error }}</li>
                             {% endfor %}
-                        </ul>
-                    {% endif %}
+                        {% comment %} </ul>
+                    {% endif %} {% endcomment %}
     {% comment %} {% for field in login_form %}
         <p>
                 <div class="mb-3">
@@ -68,12 +68,13 @@
 
 <!--                if they not entered anything correctly then it will show red error-->
         {% comment %} {% if login_form.non_field_errors %}
-            <small style="color: red;">
+            <small style="color: re
+            d;">
                 <p>{{login_form.non_field_errors}}</p>
             </small>
         {% endif %} {% endcomment %}
 
-    <button class="btn btn-warning" style='border: 3px #000000 solid; border-radius:2rem; background:#fff'>SignIn</button>
+    <button class="btn btn-warning" style='border: 3px #000000 solid; border-radius:2rem; background:#fff'>LogIn</button>
     <br><br>
     <p><a href="{% url 'user_login:password_reset'%}" style='color:#303030; '>Forget password?</a></p>
     </div>
