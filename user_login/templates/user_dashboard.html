@@ -43,6 +43,8 @@
     width: 100%;
     padding: 2rem;
     background-color: #212529;
+    {% comment %} box-shadow: 0 8px 30px 0 rgba(0,0,0,.95); {% endcomment %}
+
     color: white;
     text-align: center;
     }
@@ -276,6 +278,10 @@
   display: flex;
   flex-direction: column;
 }
+.btn-warning {
+  background-color: #ffd381;
+}
+
 
 {% endblock %}
 </head>
@@ -294,20 +300,20 @@
                     {% comment %} <h5 class="mb-3" style="letter-spacing: 2px; color: #7f4722;">shopping online</h5> {% endcomment %}
                     <ul class="list-unstyled mb-4">
                       <li class="mb-1">
-                        <button href="#!" class="btn btn-warning" style='border: 0px #fff solid; border-radius:1rem; background:#fbc35a; color:#000; margin-bottom:5px; width:150px;'>POOL</button>
+                        <button href="#!" class="btn btn-warning" style='border: 0px #fff solid; border-radius:1rem; color:#000; margin-bottom:5px; width:150px;'>POOL</button>
                         {% comment %} <a  style="color: #000;">POOL</a> {% endcomment %}
                       </li>
                       <li class="mb-1">
-                        <button href="#!" class="btn btn-warning" style='border: 0px #fff solid; border-radius:1rem; background:#fbc35a; color:#000; margin-bottom:5px; width:150px;'>GYM</button>
+                        <button href="#!" class="btn btn-warning" style='border: 0px #fff solid; border-radius:1rem; color:#000; margin-bottom:5px; width:150px;'>GYM</button>
 
                         {% comment %} <a href="#!" style="color: #000;">GYM</a> {% endcomment %}
                       </li>
                       <li class="mb-1">
-                        <button href="#!" class="btn btn-warning" style='border: 0px #fff solid; border-radius:1rem; background:#fbc35a; color:#000; margin-bottom:5px; width:150px;'>CRECHE</button>
+                        <button href="#!" class="btn btn-warning" style='border: 0px #fff solid; border-radius:1rem; color:#000; margin-bottom:5px; width:150px;'>CRECHE</button>
                         {% comment %} <a href="#!" style="color: #000;">CRECHE</a> {% endcomment %}
                       </li>
                       <li>
-                        <button href="#!" class="btn btn-warning" style='border: 0px #fff solid; border-radius:1rem; background:#fbc35a; color:#000; margin-bottom:5px; width:150px;'>And More...</button>
+                        <button href="#!" class="btn btn-warning" style='border: 0px #fff solid; border-radius:1rem;  color:#000; margin-bottom:5px; width:150px;'>And More...</button>
                         {% comment %} <a href="#!" style="color: #000;">And More...</a> {% endcomment %}
                       </li>
                     </ul>
@@ -346,18 +352,18 @@
             <strong><h2 class="side1" style='color: #000  ; '>PAYMENT</h2></strong><br>
                       {% comment %} <div class="col-lg-3 col-md-6 mb-4"> {% endcomment %}
                         {% comment %} <h5 class="mb-3" style="letter-spacing: 2px; color: #7f4722;">shopping online</h5> {% endcomment %}
-                        <ul class="list-unstyled mb-4">
+                        <ul class="list-unstyled mb-4" >
                           <li class="mb-1">
-                            <button href="#!" class="btn btn-warning" style='border: 0px #fff solid; border-radius:2rem; background:#fbc35a; color:#000; margin-bottom:20px; padding: 0.5rem; width: 200px;'>Society Charges</button>
+                            <button href="#!" class="btn btn-warning" style='border: 0px #fff solid; border-radius:2rem;  color:#000; margin-bottom:20px; padding: 0.5rem; width: 200px;'>Society Charges</button>
                             {% comment %} <a  style="color: #000;">POOL</a> {% endcomment %}
                           </li>
                           <li class="mb-1">
-                            <button href="#!" class="btn btn-warning" style='border: 0px #fff solid; border-radius:2rem; background:#fbc35a; color:#000; margin-bottom:20px; padding:0.5rem; width:200px;'>Utility Payment</button>
+                            <button href="#!" class="btn btn-warning" style='border: 0px #fff solid; border-radius:2rem; color:#000; margin-bottom:20px; padding:0.5rem; width:200px;'>Utility Payment</button>
     
                             {% comment %} <a href="#!" style="color: #000;">GYM</a> {% endcomment %}
                           </li>
                           <li class="mb-1">
-                            <button href="#!" class="btn btn-warning" style='border: 0px #fff solid; border-radius:2rem; background:#fbc35a; color:#000; margin-bottom:20px; padding:0.5rem; width:200px;'>Rent Payment</button>
+                            <button href="#!" class="btn btn-warning" style='border: 0px #fff solid; border-radius:2rem; color:#000; margin-bottom:20px; padding:0.5rem; width:200px;'>Rent Payment</button>
     
                             {% comment %} <a href="#!" style="color: #000;">GYM</a> {% endcomment %}
                           </li>
@@ -381,7 +387,7 @@
           {% for vis in visitor %}
                       <li class="mb-1">
                         <button href="#!" class="btn btn-warning" style='border: 0pxPAYMENT
-                        #fff solid; border-radius:1rem; background:#fbc35a; color:#000; margin-bottom:10px; width:100%; '>{{ vis.name }} | {{vis.email}}</button>
+                        #fff solid; border-radius:1rem;  color:#000; margin-bottom:10px; width:100%; '>{{ vis.name }} | {{vis.email}}</button>
                       </li>
                       {% endfor %}
                       {% comment %} <li class="mb-1">
@@ -401,7 +407,7 @@
     <section id='sidebar_welcome'> 
       {% comment %} <div class="other"> {% endcomment %}
         <div style='color:#fff; '>
-          <medium><h1 class="side1" style='color: #000 ; padding:1rem; '>Hi <span ><button style='color: #000; border-radius:1rem; border:0px; background-color: #fbc35a; padding-top:0.5rem;'><h1><strong>{{user.username}}</strong> !<h1></button></span></h1></medium>
+          <medium><h1 class="side1" style='color: #000 ; padding:1rem; '>Hi <span ><button style='color: #000; border-radius:1rem; border:0px; background-color: #ffd381; padding-top:0.5rem;'><h1><strong>{{user.username}}</strong> !<h1></button></span></h1></medium>
                     {% comment %} <div class="col-lg-3 col-md-6 mb-4"> {% endcomment %}
                       {% comment %} <h5 class="mb-3" style="letter-spacing: 2px; color: #7f4722;">shopping online</h5> {% endcomment %}
                       <ul class="list-unstyled mb-4">
@@ -422,7 +428,7 @@
   <medium>
     <a style="margin-left:-70px;">Recent News:</a>
     {% if user.is_admin %}
-    <button  style='border-radius:2rem ; border:6px solid #fbc35a; background-color:#fbc35a;  font-size: 30px;' ><a style='color:#000; text-decoration:none; padding: 0.5rem; ' href="{% url 'user_login:news_add' %}">Add News</a></button>
+    <button  style='border-radius:2rem ; border:6px solid #ffd381; background-color:#ffd381;  font-size: 30px;' ><a style='color:#000; text-decoration:none; padding: 0.5rem; ' href="{% url 'user_login:news_add' %}">Add News</a></button>
     {% endif %}
 </medium>
 </h1>
@@ -564,11 +570,11 @@
     
     <div class="footer" style='width: 100%; float:left;'>
 
-        <h2 style="color:#fbc35a;">SOCIETY MANAGEMENT</h2>
+        <h2 style="color:#fdd381;">SOCIETY MANAGEMENT</h2>
         <p>Think Future Technologies
           <br>
-            <strong STYLE='COLOR:#FBC35A;'>Contact :  </strong>1234567890
-          <br> Thank You For Visiting.<span style="color:#fbc35a;">!!!</span></p>
+            <strong STYLE='COLOR:#ffd381;'>Contact :  </strong>1234567890
+          <br> Thank You For Visiting.<span style="color:#ffd381;">!!!</span></p>
     </div>
 </html>
 
