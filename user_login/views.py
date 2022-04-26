@@ -12,7 +12,7 @@ from django.contrib import messages
 import random
 from django.conf import settings
 from .models import Account, News, BuyRent, Visitors
-from task import send_otp_task
+from .task import send_otp_task
 
 @login_required(login_url='/user_login/login/')
 def newsadd(request):
@@ -249,6 +249,29 @@ def registration_view(request):
         messages.error(request, err)
     return render(request, "register.html", context)
 
+def otp_view(request):
+    # OTP = send_otp(request.session['email'])
+    OTP = request.session['otp']
+    if request.method == "POST":
+
+        # po = Status.objects.latest('id')
+        # email = request.session['email']
+        # pdb.set_trace()
+        if OTP == int(request.POST['otp']):
+            user = Account.objects.get(email=request.session['email'])
+            # usr = Account.objects.all()
+            user.is_verified = True
+            # pdb.set_trace()
+            user.save()
+
+            # usr.save()
+            return redirect('user_login:login')
+        else:
+            messages.error(request, "OTP does not match. recheck or click to resend otp")
+        return render(request, 'otp.html', {'error':{"Password doesn't match"}})
+    return render(request, 'otp.html')
+
+
 
 def login_view(request):
     context = {}
@@ -283,28 +306,6 @@ def logout_view(request):
     logout(request)
     return redirect('user_login:dashboard')
 
-
-def otp_view(request):
-    # OTP = send_otp(request.session['email'])
-    OTP = request.session['otp']
-    if request.method == "POST":
-
-        # po = Status.objects.latest('id')
-        # email = request.session['email']
-        # pdb.set_trace()
-        if OTP == int(request.POST['otp']):
-            user = Account.objects.get(email=request.session['email'])
-            # usr = Account.objects.all()
-            user.is_verified = True
-            # pdb.set_trace()
-            user.save()
-
-            # usr.save()
-            return redirect('user_login:login')
-        else:
-            messages.error(request, "OTP does not match. recheck or click to resend otp")
-        return render(request, 'otp.html', {'error':{"Password doesn't match"}})
-    return render(request, 'otp.html')
 
 
 
