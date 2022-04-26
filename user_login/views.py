@@ -12,7 +12,7 @@ from django.contrib import messages
 import random
 from django.conf import settings
 from .models import Account, News, BuyRent, Visitors
-
+from task import send_otp_task
 
 @login_required(login_url='/user_login/login/')
 def newsadd(request):
@@ -225,17 +225,20 @@ def registration_view(request):
             request.session['email'] = email 
             request.session['otp'] = user_otp
  
-            mess= f"Hello {user.email}, \n Your OTP is {user_otp} \n Thank You"
+ 
+            send_otp_task.delay(email, user_otp)
 
-            # print(user_otp)
+            # mess= f"Hello {user.email}, \n Your OTP is {user_otp} \n Thank You"
+            
+            # # print(user_otp)
 
-            send_mail(
-                  "OTP for Registration.",
-                    mess,
-                   settings.EMAIL_HOST_USER,
-                   [user.email],
-                   fail_silently= False
-                    )
+            # send_mail(
+            #       "OTP for Registration.",
+            #         mess,
+            #        settings.EMAIL_HOST_USER,
+            #        [user.email],
+            #        fail_silently= False
+            #         )
 
             return redirect('user_login:otp')
         else: # GET

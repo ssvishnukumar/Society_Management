@@ -1,4 +1,3 @@
-from xml.parsers.expat import model
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from user_login.models import Account, News, BuyRent, Visitors, ComplaintSuggestion

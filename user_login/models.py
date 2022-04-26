@@ -1,8 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import BaseUserManager, PermissionsMixin, AbstractUser
 from django.urls import reverse
-from more_itertools import first
-from pyparsing import Char
+
 
 
 class MyAccountManager(BaseUserManager): # This function is created after the Account class is created.

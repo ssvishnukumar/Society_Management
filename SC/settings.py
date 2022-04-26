@@ -33,13 +33,15 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'user_login',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 'django_celery_beat',
+    'user_login',
+
 ]
 
 MIDDLEWARE = [
@@ -159,3 +161,14 @@ AUTH_USER_MODEL = 'user_login.Account' # here user_login is appname and Account 
 # it overrides the default behavior of the builtin user object.
 # and here we are telling django that we are authenticating the users with the custom one which we built.
 
+# redis ( celery )
+# This settings will be used by the celery.
+
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
+# CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_TIMEZONE = "Asia/Kolkata"
+
+# CELERY_IMPORTS=["user_login.task",]
