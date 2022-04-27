@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'django_celery_beat',
+    'django_celery_beat',
     'user_login',
 
 ]
@@ -172,3 +172,13 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_TIMEZONE = "Asia/Kolkata"
 
 # CELERY_IMPORTS=["user_login.task",]
+
+
+# to schedule the task from settings.py...use the code like below...
+# CELERY_BEAT_SCHEDULE = {
+#     'scheduled_task' : {
+#         'task' : 'user_login.task.add',
+#         'schedule': 5.0,
+#         'args': (4,5),
+#     },
+# }

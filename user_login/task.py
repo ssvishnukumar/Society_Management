@@ -16,6 +16,10 @@ def send_otp_task(email, user_otp):
     )
     print("email sent successfully.....!")
 
+@shared_task
+def add(x,y):
+    return x+y
+    
 
 # from SC.celery import app 
 # from .models import Account
