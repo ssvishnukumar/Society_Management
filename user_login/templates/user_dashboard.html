@@ -387,7 +387,7 @@
           {% for vis in visitor %}
                       <li class="mb-1">
                         <button href="#!" class="btn btn-warning" style='border: 0pxPAYMENT
-                        #fff solid; border-radius:1rem;  color:#000; margin-bottom:10px; width:100%; '>{{ vis.name }} | {{vis.email}}</button>
+                        #fff solid; border-radius:1rem;  color:#000; margin-bottom:10px; width:100%; '>{{ vis.name|truncatechars:14 }} | {{vis.email}}</button>
                       </li>
                       {% endfor %}
                       {% comment %} <li class="mb-1">

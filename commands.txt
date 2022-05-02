@@ -19,10 +19,12 @@ Command Reference
 # Run Celery
     celery -A NAMEOFINSTANCE worker --loglevel=info
 
-    celery -A core worker --loglevel=info
+    celery -A SC worker --loglevel=info
+
+    celery -A SC worker -l INFO 
 
     [Windows OS]
-    celery -A core worker -l info --pool=solo
+    celery -A SC worker -l info --pool=solo
 
 # Run RabbitMQ (On Windows)
 
@@ -79,3 +81,10 @@ You can also embed beat inside the worker by enabling the workers -B option
 # Database scheduler
 celery -A core beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler
 ###############################
+
+
+# to create the django cache database run this command.
+python manage.py createcachetable --dry-run
+# the above line kind of creates and shows the data of the table that what we have mentioned in our settings.py file...in the variable of CELERY_CACHE_BACKEND , CACHES
+# the --dry-run will show the result in the terminal...remove the --dry-run from the above command to create the table
+python manage.py createcachetable

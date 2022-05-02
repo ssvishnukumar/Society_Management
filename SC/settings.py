@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-_!j)0os)5cv8(h8fieimg*-aurkxt=3w6j)x@t119p+s6)$sna
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["0.0.0.0", "127.0.0.1", "127.0.0.0"]
 
 
 # Application definition
@@ -39,7 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
     'django_celery_beat',
+    'django_celery_results',
+    
     'user_login',
 
 ]
@@ -86,16 +89,26 @@ WSGI_APPLICATION = 'SC.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'db_vishnu',
+#         'USER': 'vishnu',
+#         'PASSWORD': 'starz',
+#         'HOST': 'mydatabase',
+#         'PORT': '5432',
+#     }
+# }
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'db_vishnu',
-        'USER': 'vishnu',
-        'PASSWORD': 'starz',
-        'HOST': 'localhost',
-        'PORT': '',
+    "default": {
+        'ENGINE': 'django.db.backends.postgresql',
+        'HOST': os.environ.get('DB_HOST'),
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASS'),
     }
 }
+
 
 # admin : vishnu
 #password : starrrrr
@@ -145,11 +158,6 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#
-# LOGIN_REDIRECT_URL = 'verification'
-# LOGOUT_REDIRECT_URL = 'dashboard'
-
-
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS= True
@@ -164,9 +172,9 @@ AUTH_USER_MODEL = 'user_login.Account' # here user_login is appname and Account 
 # redis ( celery )
 # This settings will be used by the celery.
 
-CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
-# CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379'
-CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_BROKER_URL = ''
+CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379'
+CELERY_ACCEPT_CONTENT = ['application/json',]
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_TIMEZONE = "Asia/Kolkata"
@@ -182,3 +190,21 @@ CELERY_TIMEZONE = "Asia/Kolkata"
 #         'args': (4,5),
 #     },
 # }
+
+# CELERY_RESULT_BACKEND = 'django-db' 
+# the above is to see the results...here we have used inbuilt django database
+# the results will be stored in the task results in the admin panel...
+
+# below lines are used to store the results in the django cache database so that the application will be faster...than just saveing the results in the database...if there is large number of queries....
+# CELERY_CACHE_BACKEND = 'default'
+# CACHES = {
+#     'default':{
+#         'BACKEND':'django.core.cache.backends.db.DatabaseCache',
+#         'LOCATION':'cachedb',
+#     },
+# }
+
+# CELERY_BROKER_URL = os.environ.get('CELERY_BROKER', "redis://127.0.0.1:6379")
+# CELERY_RESULT_BACKEND = os.environ.get('CELERY_BROKER', "redis://127.0.0.1:6379")
+CELERY_BROKER_URL = os.environ.get('CELERY_BROKER', "redis://redis:6379/0")
+CELERY_RESULT_BACKEND = os.environ.get('CELERY_BROKER', "redis://redis:6379/0")

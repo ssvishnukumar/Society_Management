@@ -1,0 +1,63 @@
+version: "3"
+
+
+services:
+  mydatabase:
+    image: postgres
+    container_name: postgres_db
+    volumes:
+      - /dbdata/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=db_vishnu
+      - POSTGRES_USER=vishnu
+      - POSTGRES_PASSWORD=starz
+      # - POSTGRES_HOST_AUTH_METHOD=trust
+  
+    # ports:
+    #   - 5431:5431
+  app:
+    build: .
+    container_name: scapp_container
+    command: python manage.py runserver 0.0.0.0:8000 # here defining quad zero's will check for the all the ip addresses available. 
+    volumes:
+      - .:/scapp
+    ports:
+      - 8000:8000
+    image: app:scapp
+    environment:
+      - DEBUG=1
+      - DB_HOST=mydatabase
+      - DB_NAME=db_vishnu
+      - DB_USER=vishnu
+      - DB_PASS=starz
+    #   - DJANGO_ALLOWED_HOSTS=localhost 0.0.0.1 [::1]
+    #   - CELERY_BROKER=redis://redis:6379/0   # here we can change the port number...but 6379 is default for redis.. # At the /0 we can do more things...read the documentation for more. 
+    #   - CELERY_BACKEND=redis://redis:6379/0
+    depends_on:
+      - mydatabase
+      - redis 
+  # the below line is not necessary...but we are just making the separate service.
+  celery:
+    # restart: always
+    build: .
+    command: celery -A SC worker -l INFO # -l INFO give the informations in the terminal.
+    volumes:
+      - .:/scapp
+    container_name: celery
+    environment:
+      - DEBUG=1
+      # - DJANGO_ALLOWED_HOSTS=localhost 0.0.0.1 [::1]
+      - CELERY_BROKER=redis://redis:6379/0
+      - CELERY_BACKEND=redis://redis:6379/0
+    depends_on:
+      - mydatabase
+      - redis
+      - app
+
+  redis:
+    image: "redis:alpine" # slim version of redis 
+    container_name: redis
+# volumes:
+#   pgdata:
+
+
