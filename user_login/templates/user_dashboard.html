@@ -109,7 +109,7 @@
   cursor: default;
   height: 20rem;
   right: 650px;
-  top: 75%  ;
+  top: 71%  ;
   border-radius: 3rem; 
   overflow-x: hidden;
   overflow-y: hidden;
@@ -118,6 +118,28 @@
   {% comment %} top: 0; {% endcomment %}
   {% comment %} margin-top:60px; {% endcomment %}
   width: 20%;
+  z-index: 1;
+  {% comment %} bottom:0; {% endcomment %}
+}
+#sidebar_welcome {
+  padding: 1em 2.5em 1em 2.5em;
+  background: rgba(255,255,255,0.5);
+  border-top: 3px solid rgba(255,255,255,1);
+  border-bottom: 3px solid rgba(255,255,255,1);
+  backdrop-filter: saturate(100%) blur(10px);
+
+  cursor: default;
+  height: 15rem;
+  right: 100px;
+  top: 76%;
+  border-radius: 3rem;;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  position: absolute;
+  text-align: center;
+  {% comment %} top: 0; {% endcomment %}
+  {% comment %} margin-top:60px; {% endcomment %}
+  width: 30%;
   z-index: 1;
   {% comment %} bottom:0; {% endcomment %}
 }
@@ -132,7 +154,7 @@
   cursor: default;
   height: 15rem;
   right: 100px;
-  top: 125%  ;
+  top: 120%  ;
   border-radius: 3rem;;
   overflow-x: hidden;
   overflow-y: hidden;
@@ -156,7 +178,7 @@
   cursor: default;
   height: 20rem;
   right: 1075px;
-  top: 120%  ;
+  top: 115%  ;
 
   {% comment %} margin-bottom:100px; {% endcomment %}
   {% comment %} margin:2rem; {% endcomment %}
@@ -181,7 +203,7 @@
   cursor: default;
   height: 20rem;
   right: 650px;
-  top: 120% ;
+  top: 115% ;
   border-radius: 3rem;;
   overflow-x: hidden;
   overflow-y: hidden;
@@ -193,28 +215,7 @@
   z-index: 1;
   {% comment %} bottom:0; {% endcomment %}
 }
-#sidebar_welcome {
-  padding: 1em 2.5em 1em 2.5em;
-  background: rgba(255,255,255,0.5);
-  border-top: 3px solid rgba(255,255,255,1);
-  border-bottom: 3px solid rgba(255,255,255,1);
-  backdrop-filter: saturate(100%) blur(10px);
 
-  cursor: default;
-  height: 15rem;
-  right: 100px;
-  top: 80%;
-  border-radius: 3rem;;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  position: absolute;
-  text-align: center;
-  {% comment %} top: 0; {% endcomment %}
-  {% comment %} margin-top:60px; {% endcomment %}
-  width: 30%;
-  z-index: 1;
-  {% comment %} bottom:0; {% endcomment %}
-}
 @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
   .sidebar {
     -webkit-backdrop-filter: blur(10px);

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django_celery_results',
     
     'user_login',
+    # 'channels',
 
 ]
 
@@ -77,6 +78,9 @@ TEMPLATES = [
 
 
 WSGI_APPLICATION = 'SC.wsgi.application'
+
+# ASGI application is created by us.
+# ASGI_APPLICATION = 'SC.asgi.application'
 
 
 # Database
